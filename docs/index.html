@@ -3,70 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Иван Петров | Персональный сайт</title> <!-- Замените на своё имя -->
+    <title>Мой Проект</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Глобальные стили */
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            color: #333;
-            background-color: #f9f9f9;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
         }
-        h1 {
-            color: #2c3e50;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .social-links a {
-            margin-right: 10px;
-        }
-        footer {
-            margin-top: 40px;
+        
+        /* Шапка с анимацией */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
             text-align: center;
-            color: #7f8c8d;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            padding-bottom: 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 15s infinite linear;
+            z-index: 1;
+        }
+        
+        @keyframes pulse {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+        
+        /* Навигация */
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
+            border-color: white;
+        }
+        
+        /* Основное содержимое */
+        .container {
+            max-width: 1200px;
+            margin: -4rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        /* Карточки с эффектом */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            transform: translateY(0);
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.8s; }
+        .card:nth-child(2) { animation-delay: 1s; }
+        .card:nth-child(3) { animation-delay: 1.2s; }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+            background: var(--secondary);
+        }
+        
+        /* Футер */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-link {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .social-link:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInDown {
+            from { 
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .tagline { font-size: 1.2rem; }
+            nav { flex-direction: column; align-items: center; }
+            .nav-link { width: 80%; text-align: center; }
+            .card { padding: 1.5rem; }
         }
     </style>
 </head>
 <body>
+    <!-- Шапка с анимацией -->
     <header>
-        <h1>Привет, я Иван Петров 👋</h1> <!-- Замените на своё имя -->
-        <p>Фронтенд-разработчик из Москвы</p> <!-- Замените на свою профессию и город -->
-    </header>
-
-    <section>
-        <h2>Обо мне</h2>
-        <p>Я занимаюсь веб-разработкой уже 3 года. Люблю создавать красивые и функциональные сайты.</p> <!-- Замените на свой текст -->
-    </section>
-
-    <section>
-        <h2>Мои проекты</h2>
-        <ul>
-            <li><a href="#">Мой блог о программировании</a></li> <!-- Добавьте ссылки -->
-            <li><a href="#">Приложение для заметок</a></li>
-            <li><a href="#">Портфолио на React</a></li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Контакты</h2>
-        <div class="social-links">
-            <a href="https://github.com/username" target="_blank">GitHub</a> <!-- Замените ссылки -->
-            <a href="https://t.me/username" target="_blank">Telegram</a>
-            <a href="mailto:your@email.com">Email</a>
+        <div class="header-content">
+            <h1>Мой Проект</h1>
+            <p class="tagline">Инновационное решение для ваших задач</p>
+            <nav>
+                <a href="#about" class="nav-link">О проекте</a>
+                <a href="#features" class="nav-link">Возможности</a>
+                <a href="#contact" class="nav-link">Контакты</a>
+            </nav>
         </div>
-    </section>
-
+    </header>
+    
+    <!-- Основное содержимое -->
+    <div class="container">
+        <!-- О проекте -->
+        <section id="about">
+            <div class="card">
+                <h2>О проекте</h2>
+                <p>Это современное решение, которое поможет вам достигать новых высот в вашей деятельности. Наша платформа сочетает в себе простоту использования и мощный функционал.</p>
+                <p>Разработано с любовью к деталям и вниманием к потребностям пользователей.</p>
+                <a href="#" class="btn">Узнать больше</a>
+            </div>
+        </section>
+        
+        <!-- Возможности -->
+        <section id="features">
+            <div class="card">
+                <h2>Возможности</h2>
+                <ul style="list-style-type: none; margin-left: 1rem;">
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Интуитивно понятный интерфейс</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Мощные аналитические инструменты</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Кроссплатформенная поддержка</li>
+                    <li style="margin-bottom: 0.5rem;"><i class="fas fa-check" style="color: var(--accent); margin-right: 0.5rem;"></i> Регулярные обновления</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Контакты -->
+        <section id="contact">
+            <div class="card">
+                <h2>Свяжитесь с нами</h2>
+                <p>Готовы начать работу с нами? Оставьте свои контакты, и мы свяжемся с вами в ближайшее время.</p>
+                <form style="margin-top: 1.5rem;">
+                    <input type="text" placeholder="Ваше имя" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 5px; font-family: inherit;">
+                    <input type="email" placeholder="Ваш email" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 5px; font-family: inherit;">
+                    <textarea placeholder="Ваше сообщение" style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 5px; font-family: inherit; min-height: 120px;"></textarea>
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Футер -->
     <footer>
-        <p>© 2024 Иван Петров. Все права защищены.</p> <!-- Замените на своё имя -->
+        <div class="social-links">
+            <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2023 Мой Проект. Все права защищены.</p>
     </footer>
+    
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Анимация при скролле
+        const animateOnScroll = () => {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                const cardPosition = card.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if(cardPosition < screenPosition) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
 </body>
 </html>
