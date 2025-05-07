@@ -1,6 +1,5 @@
 /* style.css */
 
-/* --- Переменные для удобства --- */
 :root {
     --font-primary: 'Inter', sans-serif;
     --font-headings: 'Poppins', sans-serif;
@@ -8,39 +7,26 @@
     --color-text: #e0e0e0;
     --color-text-darker: #b0b0b0;
     
-    /* Новый основной градиент для body */
-    --gradient-body: linear-gradient(145deg, #4B0082 0%, #C71585 35%, #1A0A2A 70%, #0A0014 100%);
-    /* Градиент для текста hero-title */
-    --gradient-hero-text: linear-gradient(135deg, #DB00FF 0%, #A855F7 50%, #FFFFFF 100%);
-    /* Градиент для CTA кнопки */
+    --gradient-body: linear-gradient(145deg, #3c0c64 0%, #870f5f 35%, #1a0a2a 70%, #0A0014 100%); /* Сделал основной градиент чуть темнее и насыщеннее */
+    /* Новый градиент для hero-title: от очень светлого лавандового к белому */
+    --gradient-hero-text: linear-gradient(135deg, #E6E6FA 0%, #F0F8FF 60%, #FFFFFF 100%); 
     --gradient-cta: linear-gradient(135deg, #8A2BE2 0%, #FF00FF 100%);
 
-    --glass-bg-color: rgba(26, 10, 42, 0.25); /* Чуть менее фиолетовый, больше прозрачности */
-    --glass-blur: 12px; /* Чуть сильнее блюр */
-    --glass-border-color: rgba(255, 255, 255, 0.1); /* Чуть менее заметная рамка */
+    --glass-bg-color: rgba(26, 10, 42, 0.25); 
+    --glass-blur: 12px; 
+    --glass-border-color: rgba(255, 255, 255, 0.1); 
     --glass-border-radius: 15px;
 
     --header-height: 70px;
 }
 
-/* --- Общие сбросы и настройки --- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
 
 body {
     font-family: var(--font-primary);
-    background: var(--gradient-body); /* Используем новый градиент для всего body */
-    background-attachment: fixed; /* Чтобы градиент не скроллился */
+    background: var(--gradient-body);
+    background-attachment: fixed; 
     color: var(--color-text);
     line-height: 1.7;
     min-height: 100vh;
@@ -48,15 +34,9 @@ body {
     position: relative;
 }
 
-/* Эффект шума - остался без изменений */
 .noise-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1; 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: -1; 
     background: 
         linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.025) 50%),
         linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.005), rgba(0, 0, 255, 0.01));
@@ -64,54 +44,38 @@ body {
     animation: noise-animation .2s infinite;
 }
 @keyframes noise-animation {
-  0% { transform: translate(0,0) }
-  10% { transform: translate(-1px,-1px) }
-  20% { transform: translate(1px,1px) }
-  100% { transform: translate(0,0) }
+  0% { transform: translate(0,0) } 10% { transform: translate(-1px,-1px) }
+  20% { transform: translate(1px,1px) } 100% { transform: translate(0,0) }
 }
 
-/* Кастомный скроллбар - остался без изменений */
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent;  }
 ::-webkit-scrollbar-thumb { background: rgba(138, 43, 226, 0.5); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: rgba(138, 43, 226, 0.8); }
 
-/* --- Типографика --- */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-headings);
-    font-weight: 700;
-    color: #f5f5f5;
-    margin-bottom: 0.75em;
-}
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-headings); font-weight: 700; color: #f5f5f5; margin-bottom: 0.75em; }
 
 .hero-title {
     font-size: clamp(3rem, 10vw, 7rem);
     text-align: center;
     letter-spacing: 1px;
     line-height: 1.1;
-    /* Эффект градиентного текста */
     background: var(--gradient-hero-text);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-fill-color: transparent; /* Для Firefox */
-    /* Легкая тень для отделения, если градиент будет светлым на светлом участке фона body */
-    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3); 
+    text-fill-color: transparent; 
+    text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2); /* Более деликатная тень */
+    position: relative; /* Для z-index над звездами */
+    z-index: 2;
 }
 
-.site-title-small {
-    font-family: var(--font-headings);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #f5f5f5;
-}
-
+.site-title-small { font-family: var(--font-headings); font-size: 1.5rem; font-weight: 700; color: #f5f5f5; }
 p { margin-bottom: 1em; }
-a { color: #d1a3ff; text-decoration: none; transition: color 0.3s ease; } /* Чуть ярче ссылки */
+a { color: #d1a3ff; text-decoration: none; transition: color 0.3s ease; }
 a:hover { color: #e9d1ff; text-decoration: underline; }
 ul { list-style: none; padding-left: 0; }
 
-/* --- Glassmorphism Panel --- */
 .glass-panel {
     background: var(--glass-bg-color);
     backdrop-filter: blur(var(--glass-blur));
@@ -119,255 +83,216 @@ ul { list-style: none; padding-left: 0; }
     border-radius: var(--glass-border-radius);
     border: 1px solid var(--glass-border-color);
     padding: 25px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25); /* Чуть сильнее тень */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
     margin-bottom: 30px;
 }
 
-/* --- Hero Header (Полноэкранный) --- */
 #hero-header {
     min-height: 100vh;
     display: flex;
+    flex-direction: column; /* Чтобы заголовок и стрелка были друг под другом */
     align-items: center;
     justify-content: center;
     padding: 20px;
-    /* Фон удален, теперь используется фон body */
     position: relative; 
     z-index: 10;
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    overflow: hidden; /* Чтобы частицы не вылезали */
+    overflow: hidden;
 }
-#hero-header.scrolled-past {
-    opacity: 0;
-    transform: scale(0.95);
-    pointer-events: none;
-}
+#hero-header.scrolled-past { opacity: 0; transform: scale(0.95); pointer-events: none; }
 
-/* CSS Particles для Hero Header */
-.particles {
+/* === Звездное небо === */
+.stars-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Частицы не должны мешать кликам */
-    z-index: -1; /* Позади hero-title */
+    pointer-events: none;
+    z-index: 1; /* Позади hero-title, но поверх основного фона hero */
 }
-.particle {
+.star {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.3); /* Цвет частиц */
+    background-color: rgba(255, 255, 255, 0.8); /* Цвет звезд */
     border-radius: 50%;
-    animation: fall 10s infinite linear;
-    opacity: 0;
-}
-.particle:nth-child(1) { width: 3px; height: 3px; left: 10%; animation-duration: 7s; animation-delay: 0s; }
-.particle:nth-child(2) { width: 2px; height: 2px; left: 20%; animation-duration: 9s; animation-delay: 1s; }
-.particle:nth-child(3) { width: 4px; height: 4px; left: 30%; animation-duration: 6s; animation-delay: 2s; }
-.particle:nth-child(4) { width: 2px; height: 2px; left: 40%; animation-duration: 10s; animation-delay: 0.5s; }
-.particle:nth-child(5) { width: 3px; height: 3px; left: 50%; animation-duration: 8s; animation-delay: 1.5s; }
-.particle:nth-child(6) { width: 2px; height: 2px; left: 60%; animation-duration: 11s; animation-delay: 2.5s; }
-.particle:nth-child(7) { width: 4px; height: 4px; left: 70%; animation-duration: 7s; animation-delay: 0.2s; }
-.particle:nth-child(8) { width: 3px; height: 3px; left: 80%; animation-duration: 9s; animation-delay: 1.2s; }
-.particle:nth-child(9) { width: 2px; height: 2px; left: 90%; animation-duration: 6s; animation-delay: 2.2s; }
-.particle:nth-child(10) { width: 3px; height: 3px; left: 15%; animation-duration: 10s; animation-delay: 3s; }
-/* ... и так далее для большего количества частиц, можно копировать и менять left, animation-duration, animation-delay */
-.particle:nth-child(11) { width: 2px; height: 2px; left: 25%; animation-duration: 7s; animation-delay: 3.5s; }
-.particle:nth-child(12) { width: 4px; height: 4px; left: 35%; animation-duration: 9s; animation-delay: 4s; }
-.particle:nth-child(13) { width: 3px; height: 3px; left: 45%; animation-duration: 6s; animation-delay: 4.5s; }
-.particle:nth-child(14) { width: 2px; height: 2px; left: 55%; animation-duration: 11s; animation-delay: 5s; }
-.particle:nth-child(15) { width: 4px; height: 4px; left: 65%; animation-duration: 8s; animation-delay: 5.5s; }
-.particle:nth-child(16) { width: 3px; height: 3px; left: 75%; animation-duration: 10s; animation-delay: 0.8s; }
-.particle:nth-child(17) { width: 2px; height: 2px; left: 85%; animation-duration: 7s; animation-delay: 1.8s; }
-.particle:nth-child(18) { width: 4px; height: 4px; left: 5%; animation-duration: 9s; animation-delay: 2.8s; }
-.particle:nth-child(19) { width: 3px; height: 3px; left: 95%; animation-duration: 6s; animation-delay: 3.8s; }
-.particle:nth-child(20) { width: 2px; height: 2px; left: 50%; animation-duration: 10s; animation-delay: 4.8s; }
-
-@keyframes fall {
-    0% {
-        transform: translateY(-50px) translateX(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 0.8;
-    }
-    100% {
-        transform: translateY(calc(100vh + 50px)) translateX(20px); /* Движение по диагонали */
-        opacity: 0;
-    }
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); /* Легкое свечение */
+    animation-name: twinkle;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
 }
 
+/* Генерация случайных позиций и анимаций для звезд */
+/* Можно добавить больше таких блоков для большего количества звезд */
+.star:nth-child(1) { width: 1px; height: 1px; top: 10%; left: 20%; animation-duration: 3s; animation-delay: 0s; }
+.star:nth-child(2) { width: 2px; height: 2px; top: 30%; left: 80%; animation-duration: 5s; animation-delay: 0.5s; }
+.star:nth-child(3) { width: 1px; height: 1px; top: 50%; left: 50%; animation-duration: 4s; animation-delay: 1s; }
+.star:nth-child(4) { width: 3px; height: 3px; top: 70%; left: 10%; animation-duration: 6s; animation-delay: 0.2s; }
+.star:nth-child(5) { width: 2px; height: 2px; top: 90%; left: 90%; animation-duration: 3.5s; animation-delay: 1.5s; }
+.star:nth-child(6) { width: 1px; height: 1px; top: 5%; left: 5%; animation-duration: 4.5s; animation-delay: 0.8s; }
+.star:nth-child(7) { width: 2px; height: 2px; top: 25%; left: 35%; animation-duration: 5.5s; animation-delay: 1.2s; }
+.star:nth-child(8) { width: 1px; height: 1px; top: 45%; left: 65%; animation-duration: 3.2s; animation-delay: 0.3s; }
+.star:nth-child(9) { width: 3px; height: 3px; top: 65%; left: 85%; animation-duration: 6.5s; animation-delay: 1.8s; }
+.star:nth-child(10) { width: 2px; height: 2px; top: 85%; left: 25%; animation-duration: 4.8s; animation-delay: 0.7s; }
+/* Добавим еще звезд */
+.star:nth-child(11) { width: 1px; height: 1px; top: 15%; left: 40%; animation-duration: 3.8s; animation-delay: 0.1s; }
+.star:nth-child(12) { width: 2px; height: 2px; top: 35%; left: 70%; animation-duration: 5.2s; animation-delay: 0.6s; }
+.star:nth-child(13) { width: 1px; height: 1px; top: 55%; left: 15%; animation-duration: 4.3s; animation-delay: 1.1s; }
+.star:nth-child(14) { width: 3px; height: 3px; top: 75%; left: 60%; animation-duration: 6.8s; animation-delay: 0.4s; }
+.star:nth-child(15) { width: 2px; height: 2px; top: 95%; left: 30%; animation-duration: 3.6s; animation-delay: 1.6s; }
+.star:nth-child(16) { width: 1px; height: 1px; top: 8%; left: 88%; animation-duration: 4.7s; animation-delay: 0.9s; }
+.star:nth-child(17) { width: 2px; height: 2px; top: 28%; left: 18%; animation-duration: 5.3s; animation-delay: 1.3s; }
+.star:nth-child(18) { width: 1px; height: 1px; top: 48%; left: 78%; animation-duration: 3.4s; animation-delay: 0.5s; }
+.star:nth-child(19) { width: 3px; height: 3px; top: 68%; left: 28%; animation-duration: 6.2s; animation-delay: 1.9s; }
+.star:nth-child(20) { width: 2px; height: 2px; top: 88%; left: 48%; animation-duration: 4.9s; animation-delay: 0.8s; }
+/* И еще для плотности */
+.star:nth-child(21) { width: 1px; height: 1px; top: 12%; left: 58%; animation-duration: 3.1s; animation-delay: 0.2s; }
+.star:nth-child(22) { width: 2px; height: 2px; top: 32%; left: 8%; animation-duration: 5.8s; animation-delay: 0.7s; }
+.star:nth-child(23) { width: 1px; height: 1px; top: 52%; left: 42%; animation-duration: 4.1s; animation-delay: 1.2s; }
+.star:nth-child(24) { width: 3px; height: 3px; top: 72%; left: 72%; animation-duration: 6.6s; animation-delay: 0.6s; }
+.star:nth-child(25) { width: 2px; height: 2px; top: 92%; left: 22%; animation-duration: 3.9s; animation-delay: 1.7s; }
+/* ... можно добавить еще 25 таких блоков, всего будет 50 ... */
+.star:nth-child(26){width:1px;height:1px;top:22%;left:92%;animation-duration:4.4s;animation-delay:1s}
+.star:nth-child(27){width:2px;height:2px;top:42%;left:32%;animation-duration:5.1s;animation-delay:0.1s}
+.star:nth-child(28){width:1px;height:1px;top:62%;left:52%;animation-duration:3.7s;animation-delay:1.4s}
+.star:nth-child(29){width:3px;height:3px;top:82%;left:12%;animation-duration:6.1s;animation-delay:0.3s}
+.star:nth-child(30){width:2px;height:2px;top:2%;left:72%;animation-duration:4.6s;animation-delay:1.5s}
+.star:nth-child(31){width:1px;height:1px;top:18%;left:28%;animation-duration:3.3s;animation-delay:0.4s}
+.star:nth-child(32){width:2px;height:2px;top:38%;left:68%;animation-duration:5.7s;animation-delay:0.9s}
+.star:nth-child(33){width:1px;height:1px;top:58%;left:8%;animation-duration:4.2s;animation-delay:1.3s}
+.star:nth-child(34){width:3px;height:3px;top:78%;left:48%;animation-duration:6.3s;animation-delay:0.5s}
+.star:nth-child(35){width:2px;height:2px;top:98%;left:88%;animation-duration:3.5s;animation-delay:1.6s}
+.star:nth-child(36){width:1px;height:1px;top:3%;left:45%;animation-duration:4s;animation-delay:0s}
+.star:nth-child(37){width:2px;height:2px;top:23%;left:75%;animation-duration:5.4s;animation-delay:0.6s}
+.star:nth-child(38){width:1px;height:1px;top:43%;left:25%;animation-duration:3.9s;animation-delay:1.1s}
+.star:nth-child(39){width:3px;height:3px;top:63%;left:55%;animation-duration:6.7s;animation-delay:0.2s}
+.star:nth-child(40){width:2px;height:2px;top:83%;left:95%;animation-duration:4.1s;animation-delay:1.2s}
+.star:nth-child(41){width:1px;height:1px;top:20%;left:10%;animation-duration:3.6s;animation-delay:0.3s}
+.star:nth-child(42){width:2px;height:2px;top:40%;left:50%;animation-duration:5.9s;animation-delay:0.8s}
+.star:nth-child(43){width:1px;height:1px;top:60%;left:90%;animation-duration:4.5s;animation-delay:1.4s}
+.star:nth-child(44){width:3px;height:3px;top:80%;left:30%;animation-duration:6.4s;animation-delay:0.1s}
+.star:nth-child(45){width:2px;height:2px;top:100%;left:70%;animation-duration:3.2s;animation-delay:1.5s}
+.star:nth-child(46){width:1px;height:1px;top:16%;left:86%;animation-duration:4.8s;animation-delay:0.4s}
+.star:nth-child(47){width:2px;height:2px;top:36%;left:36%;animation-duration:5.6s;animation-delay:1s}
+.star:nth-child(48){width:1px;height:1px;top:56%;left:66%;animation-duration:3s;animation-delay:0.5s}
+.star:nth-child(49){width:3px;height:3px;top:76%;left:6%;animation-duration:6.9s;animation-delay:1.1s}
+.star:nth-child(50){width:2px;height:2px;top:96%;left:46%;animation-duration:4.3s;animation-delay:0.2s}
 
-/* --- Main Header (Фиксированный) --- */
-#main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(0.5); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+/* === Стрелка вниз === */
+.scroll-down-arrow {
+    position: absolute;
+    bottom: 30px; /* Отступ от нижнего края hero-секции */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3; /* Поверх звезд, но под возможными другими элементами */
+    width: 48px; /* Размер контейнера для SVG */
+    height: 48px;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+.scroll-down-arrow svg {
     width: 100%;
-    height: var(--header-height);
-    z-index: 1000;
-    padding: 0 20px;
+    height: 100%;
+    fill: #ffffff; /* Белый цвет стрелки */
+    filter: drop-shadow(0 0 5px rgba(220, 180, 255, 0.7)); /* Светло-фиолетовое свечение */
+}
+.scroll-down-arrow:hover svg {
+    filter: drop-shadow(0 0 10px rgba(220, 180, 255, 1)); /* Усиление свечения при наведении */
+}
+.scroll-down-arrow {
+    animation: bobbing 2.5s ease-in-out infinite;
+}
+@keyframes bobbing {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+
+#main-header {
+    position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
+    z-index: 1000; padding: 0 20px;
     background: var(--glass-bg-color); 
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
+    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
     border-bottom: 1px solid var(--glass-border-color);
     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transform: translateY(-100%);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: translateY(-100%);
     transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
 }
 #main-header.visible { opacity: 1; transform: translateY(0); }
 .header-container {
-    width: 100%;
-    max-width: 1100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    width: 100%; max-width: 1100px;
+    display: flex; align-items: center; justify-content: space-between;
 }
 
-/* --- Основной контент --- */
-#main-content {
-    padding-top: 50px;
-    padding-bottom: 50px;
-    position: relative;
-    z-index: 5;
-}
+#main-content { padding-top: 50px; padding-bottom: 50px; position: relative; z-index: 5; }
 .content-wrapper { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-
 .intro-section { text-align: center; }
 .description { font-size: 1.15rem; color: var(--color-text-darker); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
-
-.content-section h2 {
-    font-size: 1.8rem;
-    border-bottom: 1px solid var(--glass-border-color);
-    padding-bottom: 0.5em;
-    margin-bottom: 1em;
-    /* Удалены ::before, т.к. иконки в HTML */
-}
-
-.people-list li, .links-list li {
-    padding: 8px 0;
-    border-bottom: 1px dashed rgba(255,255,255,0.1);
-}
+.content-section h2 { font-size: 1.8rem; border-bottom: 1px solid var(--glass-border-color); padding-bottom: 0.5em; margin-bottom: 1em; }
+.people-list li, .links-list li { padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); }
 .people-list li:last-child, .links-list li:last-child { border-bottom: none; }
 
-
-/* --- Кнопки --- */
 .btn {
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-family: var(--font-primary);
-    font-weight: 700;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    transition: all 0.3s ease;
-    font-size: 1rem;
-    margin: 5px;
+    display: inline-block; padding: 12px 25px; border-radius: 8px;
+    font-family: var(--font-primary); font-weight: 700;
+    text-decoration: none; cursor: pointer; border: none;
+    transition: all 0.3s ease; font-size: 1rem; margin: 5px;
 }
 .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-
 .btn-header-chat {
-    background: var(--glass-bg-color);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border-color);
-    color: var(--color-text);
-    padding: 8px 15px;
-    font-size: 0.9rem;
+    background: var(--glass-bg-color); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border-color); color: var(--color-text);
+    padding: 8px 15px; font-size: 0.9rem;
 }
 .btn-header-chat:hover { background: rgba(255,255,255,0.1); }
-
 .btn-primary-cta {
-    background: var(--gradient-cta);
-    color: white;
-    font-size: 1.1rem;
-    padding: 15px 30px;
-    box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
+    background: var(--gradient-cta); color: white; font-size: 1.1rem;
+    padding: 15px 30px; box-shadow: 0 5px 20px rgba(138, 43, 226, 0.4);
 }
 .btn-primary-cta:hover { box-shadow: 0 8px 25px rgba(138, 43, 226, 0.6); filter: brightness(1.1); }
-
 .rules-button.btn-secondary {
-    background: var(--glass-bg-color);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border-color);
-    color: var(--color-text);
+    background: var(--glass-bg-color); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border-color); color: var(--color-text);
 }
 .rules-button.btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
-/* --- Модальное окно (Pop-up) --- */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.75); /* Чуть темнее фон модалки */
-    animation: fadeInBg 0.3s ease-out;
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+    width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(0,0,0,0.75); animation: fadeInBg 0.3s ease-out;
 }
 .modal.visible { display: flex; align-items: center; justify-content: center; }
-
-@keyframes fadeInBg {
-    from { background-color: rgba(0,0,0,0); }
-    to { background-color: rgba(0,0,0,0.75); }
-}
-
+@keyframes fadeInBg { from { background-color: rgba(0,0,0,0); } to { background-color: rgba(0,0,0,0.75); } }
 .modal-content {
-    position: relative;
-    margin: auto;
-    padding: 30px;
-    width: 90%;
-    max-width: 650px;
+    position: relative; margin: auto; padding: 30px;
+    width: 90%; max-width: 650px;
     animation: slideInModal 0.4s ease-out forwards;
 }
-@keyframes slideInModal {
-    from { opacity: 0; transform: translateY(-30px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
+@keyframes slideInModal { from { opacity: 0; transform: translateY(-30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .close-btn {
-    color: var(--color-text-darker);
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.2s ease;
+    color: var(--color-text-darker); position: absolute; top: 15px; right: 20px;
+    font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.2s ease;
 }
 .close-btn:hover, .close-btn:focus { color: #fff; }
-
-/* Удалены ::before для заголовков модального окна */
 .modal-content ul { padding-left: 25px; list-style: disc; }
 .modal-content li { margin-bottom: 8px; }
 .modal-content em { color: var(--color-text-darker); }
 
-/* --- Подвал --- */
 footer.glass-panel {
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 50px;
-    margin-bottom: 30px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: var(--color-text-darker);
+    max-width: 800px; margin-left: auto; margin-right: auto;
+    margin-top: 50px; margin-bottom: 30px; text-align: center;
+    font-size: 0.9rem; color: var(--color-text-darker);
 }
 
-/* --- Анимации появления контента при скролле - без изменений --- */
 .animated-section { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
 .animated-section.is-visible { opacity: 1; transform: translateY(0); }
 
-/* --- Медиа-запросы для адаптивности (ОСНОВА) - без существенных изменений, кроме возможных корректировок отступов/размеров если бы они были необходимы после смены фона --- */
 @media (max-width: 768px) {
     .hero-title { font-size: clamp(2.5rem, 12vw, 5rem); }
     #main-header .header-container { padding: 0 15px; }
@@ -378,13 +303,11 @@ footer.glass-panel {
     .btn { padding: 10px 20px; font-size: 0.9rem; }
     .btn-primary-cta { padding: 12px 25px; font-size: 1rem; }
     .modal-content { width: 95%; padding: 20px; }
-
-    /* Частицы на мобильных могут быть менее заметны или их можно уменьшить/отключить */
-    .particle {
-        /* opacity: 0.5; можно сделать их менее заметными на мобильных */
-        /* display: none; /* или совсем отключить если тормозят */
+    .scroll-down-arrow { width: 40px; height: 40px; bottom: 20px; } /* Уменьшаем стрелку на мобильных */
+    .star { /* Можно сделать звезды менее заметными или уменьшить их количество на мобильных */
+        /* opacity: 0.6; */
+        /* transform: scale(0.8); */
     }
-
 }
 
 @media (max-width: 480px) {
