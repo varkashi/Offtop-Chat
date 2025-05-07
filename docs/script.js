@@ -5,25 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Логика для модального окна (Pop-up) ---
     const modal = document.getElementById('rulesModal');
     const openBtn = document.getElementById('openRulesBtn');
-    const closeBtn = modal.querySelector('.close-btn');
+    const closeBtn = modal.querySelector('.close-btn'); // Ищем внутри modal
 
     function openModal() {
         if (modal) {
             modal.classList.add('visible');
-            document.body.style.overflow = 'hidden'; // Запретить скролл фона
+            document.body.style.overflow = 'hidden'; 
         }
     }
 
     function closeModal() {
         if (modal) {
             modal.classList.remove('visible');
-            // Небольшая задержка перед восстановлением скролла, чтобы анимация закрытия успела
             setTimeout(() => {
-                // Проверяем, не открыто ли другое модальное окно (если их будет больше)
                 if (!document.querySelector('.modal.visible')) {
                     document.body.style.overflow = 'auto';
                 }
-            }, 300); // Время должно совпадать с анимацией закрытия (если есть)
+            }, 300); 
         }
     }
 
@@ -34,13 +32,11 @@ document.addEventListener('DOMContentLoaded', () => {
         closeBtn.addEventListener('click', closeModal);
     }
     if (modal) {
-        // Закрытие по клику на фон
         modal.addEventListener('click', (event) => {
             if (event.target === modal) {
                 closeModal();
             }
         });
-        // Закрытие по Escape
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && modal.classList.contains('visible')) {
                 closeModal();
@@ -52,8 +48,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Логика для анимации хедера при скролле ---
     const heroHeader = document.getElementById('hero-header');
     const mainHeader = document.getElementById('main-header');
-    const heroHeight = heroHeader ? heroHeader.offsetHeight : 0; // Высота hero секции
-    const scrollThreshold = heroHeight * 0.7; // Порог скролла (например, 70% высоты hero)
+    // Убедимся, что heroHeader существует перед получением offsetHeight
+    const heroHeight = heroHeader ? heroHeader.offsetHeight : 0; 
+    const scrollThreshold = heroHeight * 0.7; 
 
     function handleHeaderScroll() {
         if (!mainHeader || !heroHeader) return;
@@ -68,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     window.addEventListener('scroll', handleHeaderScroll);
-    handleHeaderScroll(); // Проверить состояние при загрузке
+    handleHeaderScroll(); 
 
 
     // --- Анимация появления контента при скролле (Intersection Observer) ---
@@ -79,20 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Отключить наблюдение после анимации
+                    observer.unobserve(entry.target); 
                 }
             });
         }, {
-            rootMargin: "0px 0px -100px 0px" // Анимация начнется чуть раньше, чем секция полностью видна
+            rootMargin: "0px 0px -100px 0px" 
         });
 
         animatedSections.forEach(section => {
             sectionObserver.observe(section);
         });
     } else {
-        // Фоллбэк для старых браузеров или если нет секций
         animatedSections.forEach(section => {
-            section.classList.add('is-visible'); // Просто показать
+            section.classList.add('is-visible'); 
         });
     }
 
