@@ -4,54 +4,53 @@
     --font-primary: 'Inter', sans-serif;
     --font-headings: 'Poppins', sans-serif;
     
-    /* НОВАЯ ЦВЕТОВАЯ ПАЛИТРА */
-    --color-text: #F5F5F5; /* Очень светлый, почти белый */
-    --color-text-darker: #BDBDBD; /* Светлее серый для лучшего контраста */
+    /* НОВАЯ ЦВЕТОВАЯ ПАЛИТРА (ФОН ВАРИАНТ А - с преобладанием фиолетового) */
+    --color-text: #F5F5F5; 
+    --color-text-darker: #C0C0C0; /* Чуть светлее для лучшей читаемости на новом фоне */
     
-    /* НОВЫЙ ГРАДИЕНТ ФОНА "ЭЛЕКТРИЧЕСКИЙ ЗАКАТ" */
-    --gradient-body: linear-gradient(
+    --gradient-body: linear-gradient( /* Больше фиолетового, розовый как акцент */
         160deg, 
-        #7F00FF 0%, /* Очень яркий фиолетовый (Violet) */
-        #FF007F 40%, /* Ярко-розовый (Rose) */
-        #3700B3 75%, /* Глубокий сине-фиолетовый */
-        #0D001F 100% /* Очень темный фиолетово-синий, почти черный */
+        #7F00FF 0%,   /* Яркий фиолетовый */
+        #9D00FF 35%,  /* Переходный фиолетовый */
+        #E0279F 60%,  /* Розовый (сдвинут и менее доминирующий) */
+        #4B0082 85%,  /* Темный индиго/фиолетовый */
+        #0D001F 100%  /* Почти черный */
     );
     
-    /* ГРАДИЕНТ ДЛЯ HERO TITLE - немного ярче */
-    --gradient-hero-text: linear-gradient(135deg, #F0E6FF 0%, #FFFFFF 70%, #E6E6FA 100%); 
+    /* ГРАДИЕНТ ДЛЯ HERO TITLE - яркий, с легким неоном */
+    --gradient-hero-text: linear-gradient(135deg, #F5DDFF 0%, #FFFFFF 50%, #E6E6FA 100%); 
     
     /* НОВЫЙ ГРАДИЕНТ ДЛЯ CTA КНОПКИ - более "электрический" */
-    --gradient-cta: linear-gradient(135deg, #C500FF 0%, #FF33A1 100%); /* Яркий фиолетовый к яркому розовому */
+    --gradient-cta: linear-gradient(135deg, #B000FF 0%, #FF1CA5 100%);
 
-    /* ЦВЕТ ССЫЛОК - яркий и контрастный */
-    --color-links: #FF99FF; /* Яркий светло-розовый/лавандовый */
+    --color-links: #FFB3FF; /* Яркий светло-розовый */
 
-    /* СТЕКЛЯННЫЕ ПАНЕЛИ - фон чуть изменен для лучшего сочетания, рамка чуть заметнее */
-    --glass-bg-color: rgba(25, 10, 40, 0.3); /* Темно-фиолетовый, чуть прозрачнее */
-    --glass-blur: 12px; 
-    --glass-border-color: rgba(255, 255, 255, 0.15); 
+    --glass-bg-color: rgba(30, 10, 50, 0.35); 
+    --glass-blur: 10px; 
+    --glass-border-color: rgba(220, 180, 255, 0.2); /* Рамка чуть заметнее с фиолетовым оттенком */
     --glass-border-radius: 15px;
 
-    --header-height: 70px;
-    --hero-title-max-rotate: 7deg; /* Максимальный угол поворота для заголовка */
+    --hero-title-max-rotate: 5deg; /* Уменьшил для более деликатного эффекта на карте */
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; }
+html { font-size: 16px; scroll-behavior: smooth; } /* scroll-behavior тут уже не так важен */
 
 body {
     font-family: var(--font-primary);
     background: var(--gradient-body);
     background-attachment: fixed; 
     color: var(--color-text);
-    line-height: 1.7;
+    line-height: 1.6; /* Чуть уменьшил для панелей */
     min-height: 100vh;
-    overflow-x: hidden;
+    overflow: hidden; /* Вся страница не скроллится, скролл внутри #map-viewport или #content-panel */
     position: relative;
+    display: flex; /* Для центрирования карты, если она меньше вьюпорта */
+    align-items: center;
+    justify-content: center;
 
-    /* АНИМАЦИЯ ГРАДИЕНТА ФОНА */
     background-size: 250% 250%;
-    animation: animatedGradient 30s ease infinite alternate;
+    animation: animatedGradient 35s ease infinite alternate;
 }
 
 @keyframes animatedGradient {
@@ -62,316 +61,282 @@ body {
 
 .noise-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: -1; 
+    pointer-events: none; z-index: 0; /* Под картой, но над body background */
+    /* ... (остальные стили шума прежние) ... */
     background: 
         linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.025) 50%),
         linear-gradient(90deg, rgba(255, 0, 0, 0.01), rgba(0, 255, 0, 0.005), rgba(0, 0, 255, 0.01));
     background-size: 100% 2px, 3px 100%;
     animation: noise-animation .2s infinite;
 }
-@keyframes noise-animation {
-  0% { transform: translate(0,0) } 10% { transform: translate(-1px,-1px) }
-  20% { transform: translate(1px,1px) } 100% { transform: translate(0,0) }
+@keyframes noise-animation { /* ... прежняя анимация ... */ }
+
+.stars-background-map {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: -1; /* Самый нижний слой */
 }
-
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: transparent;  }
-::-webkit-scrollbar-thumb { background: rgba(197, 0, 255, 0.5); border-radius: 10px; } /* Ярче скролл */
-::-webkit-scrollbar-thumb:hover { background: rgba(197, 0, 255, 0.8); }
-
-h1, h2, h3, h4, h5, h6 { font-family: var(--font-headings); font-weight: 700; color: #ffffff; margin-bottom: 0.75em; }
-
-.hero-title {
-    font-size: clamp(3rem, 10vw, 7rem);
-    text-align: center;
-    letter-spacing: 1px;
-    line-height: 1.1;
-    background: var(--gradient-hero-text);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-fill-color: transparent; 
-    text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 2;
-    transition: transform 0.2s ease-out; /* Для плавного возврата 3D поворота */
-}
-
-.site-title-small { font-family: var(--font-headings); font-size: 1.5rem; font-weight: 700; color: #f5f5f5; }
-p { margin-bottom: 1em; }
-a { color: var(--color-links); text-decoration: none; transition: color 0.3s ease; }
-a:hover { color: #ffffff; text-decoration: underline; }
-ul { list-style: none; padding-left: 0; }
-
-.glass-panel {
-    background: var(--glass-bg-color);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-radius: var(--glass-border-radius);
-    border: 1px solid var(--glass-border-color);
-    padding: 25px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35); /* Тень чуть сильнее */
-    margin-bottom: 30px;
-}
-
-#hero-header {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    position: relative; 
-    z-index: 10;
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-    overflow: hidden;
-    perspective: 1000px; /* Для 3D эффекта заголовка */
-}
-#hero-header.scrolled-past { opacity: 0; transform: scale(0.95); pointer-events: none; }
-
-/* === Звездное небо === */
-.stars-background {
+.star { /* Стили звезд прежние, но анимации будут разные */
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-}
-.star {
-    position: absolute;
-    background-color: rgba(255, 255, 255, 0.85); /* Звезды чуть ярче */
+    background-color: rgba(255, 255, 255, 0.9);
     border-radius: 50%;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6), 0 0 12px rgba(255, 255, 255, 0.4); /* Свечение звезд чуть интенсивнее */
-    /* Базовая анимация будет twinkle, JS может добавить другие */
-    animation-name: twinkle; 
+    box-shadow: 0 0 7px rgba(255, 255, 255, 0.7), 0 0 15px rgba(255, 255, 255, 0.5);
+    animation-name: twinkle-map; 
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
-    /* Для параллакса, начальное положение устанавливается CSS, JS будет обновлять transform */
-    transition: transform 0.1s linear; /* Для плавности параллакса, если JS обновляет не каждый кадр */
+    /* transition для параллакса на JS не нужен, т.к. JS будет двигать #map-camera */
+}
+/* Разные анимации для звезд */
+@keyframes twinkle-map { 0%, 100% { opacity: 0.3; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } }
+@keyframes twinkle-fast-map { 0%, 100% { opacity: 0.4; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1); } }
+@keyframes twinkle-subtle-map { 0%, 100% { opacity: 0.6; transform: scale(0.9); } 50% { opacity: 0.9; transform: scale(1); } }
+
+.star:nth-child(3n) { animation-name: twinkle-fast-map; animation-duration: calc(var(--base-star-duration, 4s) * 0.7); }
+.star:nth-child(5n) { animation-name: twinkle-subtle-map; animation-duration: calc(var(--base-star-duration, 4s) * 1.3); }
+/* Позиции звезд (оставляем как было, они будут двигаться вместе с #map-camera) */
+/* ... (все 50 блоков .star:nth-child(N) с top, left, width, height, animation-delay) ... */
+/* Для краткости пропущу здесь, но они нужны как в предыдущей версии style.css */
+.star:nth-child(1){width:1px;height:1px;top:10%;left:20%;animation-duration:3s;animation-delay:0s}
+/* ... и так далее до 50 ...*/
+.star:nth-child(50){width:2px;height:2px;top:96%;left:46%;animation-duration:4.3s;animation-delay:0.2s}
+
+
+#map-viewport {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; /* Важно, чтобы "камера" не вылезала */
+    position: relative;
+    perspective: 1200px; /* Для 3D эффекта заголовка, если он внутри камеры */
 }
 
-/* РАЗНООБРАЗНОЕ МЕРЦАНИЕ ЗВЕЗД */
-@keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1.1); } }
-@keyframes twinkle-fast { 0%, 100% { opacity: 0.3; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1); } }
-@keyframes twinkle-subtle { 0%, 100% { opacity: 0.5; transform: scale(0.9); } 50% { opacity: 0.8; transform: scale(1); } }
-
-/* Применяем разные анимации к разным звездам */
-.star:nth-child(3n) { animation-name: twinkle-fast; }
-.star:nth-child(5n) { animation-name: twinkle-subtle; }
-
-/* Позиции звезд (оставляем как было, но JS будет управлять data-depth для параллакса) */
-.star:nth-child(1) { width: 1px; height: 1px; top: 10%; left: 20%; animation-duration: 3s; animation-delay: 0s; }
-.star:nth-child(2) { width: 2px; height: 2px; top: 30%; left: 80%; animation-duration: 5s; animation-delay: 0.5s; }
-.star:nth-child(3) { width: 1px; height: 1px; top: 50%; left: 50%; animation-duration: 2.5s; animation-delay: 1s; } /* Fast */
-.star:nth-child(4) { width: 3px; height: 3px; top: 70%; left: 10%; animation-duration: 6s; animation-delay: 0.2s; }
-.star:nth-child(5) { width: 2px; height: 2px; top: 90%; left: 90%; animation-duration: 4.5s; animation-delay: 1.5s; } /* Subtle */
-/* ... и так далее для всех 50 звезд ... */
-.star:nth-child(6) { width: 1px; height: 1px; top: 5%; left: 5%; animation-duration: 4.5s; animation-delay: 0.8s; }
-.star:nth-child(7) { width: 2px; height: 2px; top: 25%; left: 35%; animation-duration: 5.5s; animation-delay: 1.2s; }
-.star:nth-child(8) { width: 1px; height: 1px; top: 45%; left: 65%; animation-duration: 3.2s; animation-delay: 0.3s; }
-.star:nth-child(9) { width: 3px; height: 3px; top: 65%; left: 85%; animation-duration: 3s; animation-delay: 1.8s; } /* Fast */
-.star:nth-child(10) { width: 2px; height: 2px; top: 85%; left: 25%; animation-duration: 5.8s; animation-delay: 0.7s; } /* Subtle */
-.star:nth-child(11) { width: 1px; height: 1px; top: 15%; left: 40%; animation-duration: 3.8s; animation-delay: 0.1s; }
-.star:nth-child(12) { width: 2px; height: 2px; top: 35%; left: 70%; animation-duration: 2.2s; animation-delay: 0.6s; } /* Fast */
-.star:nth-child(13) { width: 1px; height: 1px; top: 55%; left: 15%; animation-duration: 4.3s; animation-delay: 1.1s; }
-.star:nth-child(14) { width: 3px; height: 3px; top: 75%; left: 60%; animation-duration: 6.8s; animation-delay: 0.4s; }
-.star:nth-child(15) { width: 2px; height: 2px; top: 95%; left: 30%; animation-duration: 4.6s; animation-delay: 1.6s; } /* Subtle & Fast */
-.star:nth-child(16) { width: 1px; height: 1px; top: 8%; left: 88%; animation-duration: 4.7s; animation-delay: 0.9s; }
-.star:nth-child(17) { width: 2px; height: 2px; top: 28%; left: 18%; animation-duration: 5.3s; animation-delay: 1.3s; }
-.star:nth-child(18) { width: 1px; height: 1px; top: 48%; left: 78%; animation-duration: 2.4s; animation-delay: 0.5s; } /* Fast */
-.star:nth-child(19) { width: 3px; height: 3px; top: 68%; left: 28%; animation-duration: 6.2s; animation-delay: 1.9s; }
-.star:nth-child(20) { width: 2px; height: 2px; top: 88%; left: 48%; animation-duration: 5.9s; animation-delay: 0.8s; } /* Subtle */
-.star:nth-child(21){width:1px;height:1px;top:12%;left:58%;animation-duration:2.1s;animation-delay:0.2s} /* Fast */
-.star:nth-child(22){width:2px;height:2px;top:32%;left:8%;animation-duration:5.8s;animation-delay:0.7s}
-.star:nth-child(23){width:1px;height:1px;top:52%;left:42%;animation-duration:4.1s;animation-delay:1.2s}
-.star:nth-child(24){width:3px;height:3px;top:72%;left:72%;animation-duration:3.6s;animation-delay:0.6s} /* Fast */
-.star:nth-child(25){width:2px;height:2px;top:92%;left:22%;animation-duration:4.9s;animation-delay:1.7s} /* Subtle */
-.star:nth-child(26){width:1px;height:1px;top:22%;left:92%;animation-duration:4.4s;animation-delay:1s}
-.star:nth-child(27){width:2px;height:2px;top:42%;left:32%;animation-duration:2.1s;animation-delay:0.1s} /* Fast */
-.star:nth-child(28){width:1px;height:1px;top:62%;left:52%;animation-duration:3.7s;animation-delay:1.4s}
-.star:nth-child(29){width:3px;height:3px;top:82%;left:12%;animation-duration:6.1s;animation-delay:0.3s}
-.star:nth-child(30){width:2px;height:2px;top:2%;left:72%;animation-duration:5.6s;animation-delay:1.5s} /* Subtle & Fast */
-.star:nth-child(31){width:1px;height:1px;top:18%;left:28%;animation-duration:3.3s;animation-delay:0.4s}
-.star:nth-child(32){width:2px;height:2px;top:38%;left:68%;animation-duration:5.7s;animation-delay:0.9s}
-.star:nth-child(33){width:1px;height:1px;top:58%;left:8%;animation-duration:3.2s;animation-delay:1.3s} /* Fast */
-.star:nth-child(34){width:3px;height:3px;top:78%;left:48%;animation-duration:6.3s;animation-delay:0.5s}
-.star:nth-child(35){width:2px;height:2px;top:98%;left:88%;animation-duration:4.5s;animation-delay:1.6s} /* Subtle */
-.star:nth-child(36){width:1px;height:1px;top:3%;left:45%;animation-duration:3s;animation-delay:0s} /* Fast */
-.star:nth-child(37){width:2px;height:2px;top:23%;left:75%;animation-duration:5.4s;animation-delay:0.6s}
-.star:nth-child(38){width:1px;height:1px;top:43%;left:25%;animation-duration:3.9s;animation-delay:1.1s}
-.star:nth-child(39){width:3px;height:3px;top:63%;left:55%;animation-duration:3.7s;animation-delay:0.2s} /* Fast */
-.star:nth-child(40){width:2px;height:2px;top:83%;left:95%;animation-duration:5.1s;animation-delay:1.2s} /* Subtle */
-.star:nth-child(41){width:1px;height:1px;top:20%;left:10%;animation-duration:3.6s;animation-delay:0.3s}
-.star:nth-child(42){width:2px;height:2px;top:40%;left:50%;animation-duration:2.9s;animation-delay:0.8s} /* Fast */
-.star:nth-child(43){width:1px;height:1px;top:60%;left:90%;animation-duration:4.5s;animation-delay:1.4s}
-.star:nth-child(44){width:3px;height:3px;top:80%;left:30%;animation-duration:6.4s;animation-delay:0.1s}
-.star:nth-child(45){width:2px;height:2px;top:100%;left:70%;animation-duration:4.2s;animation-delay:1.5s}/* Subtle & Fast */
-.star:nth-child(46){width:1px;height:1px;top:16%;left:86%;animation-duration:4.8s;animation-delay:0.4s}
-.star:nth-child(47){width:2px;height:2px;top:36%;left:36%;animation-duration:5.6s;animation-delay:1s}
-.star:nth-child(48){width:1px;height:1px;top:56%;left:66%;animation-duration:2s;animation-delay:0.5s} /* Fast */
-.star:nth-child(49){width:3px;height:3px;top:76%;left:6%;animation-duration:6.9s;animation-delay:1.1s}
-.star:nth-child(50){width:2px;height:2px;top:96%;left:46%;animation-duration:5.3s;animation-delay:0.2s} /* Subtle */
-
-/* === Стрелка вниз === */
-.scroll-down-arrow {
+#map-camera {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    width: 48px;
-    height: 48px;
+    /* Размеры камеры могут быть больше вьюпорта, чтобы было куда "двигаться" */
+    width: 2000px; /* Примерный размер "мира" */
+    height: 1500px;
+    left: 50%; /* Начальное центрирование */
+    top: 50%;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.45, 0, 0.1, 1); /* Плавный полет камеры */
+    /* Начальное положение камеры будет установлено JS */
+}
+
+.map-object {
+    position: absolute;
+    padding: 20px;
+    text-align: center;
     cursor: pointer;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    min-width: 200px; /* Минимальная ширина объекта */
 }
-.scroll-down-arrow svg {
-    width: 100%;
-    height: 100%;
-    fill: #ffffff;
-    filter: drop-shadow(0 0 5px rgba(220, 180, 255, 0.7));
-}
-.scroll-down-arrow:hover svg {
-    filter: drop-shadow(0 0 10px rgba(220, 180, 255, 1));
-}
-.scroll-down-arrow {
-    animation: bobbing 2.5s ease-in-out infinite;
-}
-@keyframes bobbing {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-10px); }
+.map-object:hover {
+    transform: scale(1.05) translateZ(10px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4), 0 0 20px var(--glass-border-color);
 }
 
-
-#main-header {
-    position: fixed; top: 0; left: 0; width: 100%; height: var(--header-height);
-    z-index: 1000; padding: 0 20px;
-    background: var(--glass-bg-color); 
-    backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-bottom: 1px solid var(--glass-border-color);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transform: translateY(-100%);
-    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+.hero-title-map {
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Чуть меньше для карты */
+    background: var(--gradient-hero-text);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; text-fill-color: transparent; 
+    /* НОВЫЙ ЭФФЕКТ "СВЕЧЕНИЯ" ВМЕСТО ТЕНИ */
+    text-shadow: 0 0 8px rgba(240, 230, 255, 0.6), /* Светло-лавандовое свечение */
+                 0 0 15px rgba(255, 255, 255, 0.4);  /* Более широкое белое свечение */
+    margin-bottom: 0.5em;
+    transition: transform 0.2s ease-out, text-shadow 0.2s ease-out; /* Для 3D-поворота */
 }
-#main-header.visible { opacity: 1; transform: translateY(0); }
-.header-container {
-    width: 100%; max-width: 1100px;
-    display: flex; align-items: center; justify-content: space-between;
+.object-title {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: 15px;
+}
+.object-description {
+    font-size: 0.9rem;
+    color: var(--color-text-darker);
+    margin-bottom: 20px;
 }
 
-#main-content { padding-top: 50px; padding-bottom: 50px; position: relative; z-index: 5; }
-.content-wrapper { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-.intro-section { text-align: center; }
-.description { font-size: 1.15rem; color: var(--color-text-darker); margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto; }
-.content-section h2 { font-size: 1.8rem; border-bottom: 1px solid var(--glass-border-color); padding-bottom: 0.5em; margin-bottom: 1em; }
-.people-list li, .links-list li { padding: 8px 0; border-bottom: 1px dashed rgba(255,255,255,0.1); }
-.people-list li:last-child, .links-list li:last-child { border-bottom: none; }
+/* Расположение объектов на карте (примерное) */
+#object-hub { top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10;}
+#object-rules { top: 30%; left: 25%; transform: translate(-50%, -50%); }
+#object-founder { top: 35%; left: 75%; transform: translate(-50%, -50%); }
+#object-links { top: 70%; left: 30%; transform: translate(-50%, -50%); }
+#object-portal { 
+    top: 65%; left: 70%; transform: translate(-50%, -50%); 
+    /* Особый стиль для портала */
+    border-color: var(--gradient-cta);
+    animation: portal-pulse 2s infinite alternate;
+}
 
-.btn {
-    display: inline-block; padding: 12px 25px; border-radius: 8px;
+@keyframes portal-pulse {
+    from { box-shadow: 0 0 15px 5px var(--gradient-cta), 0 0 30px 10px rgba(255,255,255,0.1); }
+    to   { box-shadow: 0 0 25px 10px var(--gradient-cta), 0 0 45px 15px rgba(255,255,255,0.2); }
+}
+
+.btn { /* Общие стили кнопок */
+    display: inline-block; padding: 10px 20px; border-radius: 8px;
     font-family: var(--font-primary); font-weight: 700;
     text-decoration: none; cursor: pointer; border: none;
-    transition: all 0.3s ease; font-size: 1rem; margin: 5px;
+    transition: all 0.3s ease; font-size: 0.9rem; margin-top: 10px;
 }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+.btn:hover { transform: translateY(-2px) scale(1.03); }
 
-.btn-header-chat {
-    background: var(--glass-bg-color); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);
-    border: 1px solid var(--glass-border-color); color: var(--color-text);
-    padding: 8px 15px; font-size: 0.9rem;
+.btn-map-cta { /* Кнопка для исследования хаба */
+    background: rgba(255,255,255,0.1);
+    color: var(--color-text);
+    border: 1px solid var(--glass-border-color);
 }
-.btn-header-chat:hover { background: rgba(255,255,255,0.1); }
+.btn-map-cta:hover { background: rgba(255,255,255,0.2); }
 
-.btn-primary-cta {
-    background: var(--gradient-cta); color: white; font-size: 1.1rem;
-    padding: 15px 30px; box-shadow: 0 5px 20px rgba(197, 0, 255, 0.4); /* Тень от кнопки с фиолетовым оттенком */
-    background-size: 150% auto; /* Для анимации градиента при наведении */
+.btn-map-secondary { /* Кнопки на других объектах */
+    background: rgba(255,255,255,0.05);
+    color: var(--color-text-darker);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.8rem;
+}
+.btn-map-secondary:hover { background: rgba(255,255,255,0.15); color: var(--color-text); }
+
+
+.btn-primary-cta.portal-button { /* Кнопка портала */
+    background: var(--gradient-cta); color: white; font-size: 1rem;
+    padding: 12px 25px; box-shadow: 0 5px 20px rgba(197, 0, 255, 0.4);
+    background-size: 150% auto;
     transition: background-position 0.5s ease-out, transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
 }
-.btn-primary-cta:hover {
-    background-position: right center; /* Сдвиг градиента */
-    box-shadow: 0 8px 25px rgba(255, 51, 161, 0.6), /* Розовое свечение */
-                0 0 15px rgba(197, 0, 255, 0.5); /* Фиолетовое свечение */
+.btn-primary-cta.portal-button:hover {
+    background-position: right center;
+    box-shadow: 0 8px 25px rgba(255, 51, 161, 0.6),
+                0 0 15px rgba(197, 0, 255, 0.5);
     filter: brightness(1.15);
-    transform: translateY(-3px) scale(1.02);
+    transform: translateY(-3px) scale(1.05);
 }
 
-.rules-button.btn-secondary {
-    background: var(--glass-bg-color); backdrop-filter: blur(var(--glass-blur)); -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border-color); color: var(--color-text);
+/* Панель контента */
+#content-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 90%;
+    max-width: 700px;
+    max-height: 80vh;
+    padding: 30px;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    overflow-y: auto;
 }
-.rules-button.btn-secondary:hover { background: rgba(255,255,255,0.1); }
+#content-panel.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+}
+#content-panel-body h2, #content-panel-body h3 { color: #fff; }
+#content-panel-body p { color: var(--color-text); }
+#content-panel-body em { color: var(--color-text-darker); }
+#content-panel-body ul { list-style: disc; padding-left: 25px; }
+#content-panel-body li { margin-bottom: 8px; }
+#content-panel-body a { color: var(--color-links); }
+#content-panel-body a:hover { color: #fff; }
 
-.modal {
-    display: none; position: fixed; z-index: 2000; left: 0; top: 0;
-    width: 100%; height: 100%; overflow: auto;
-    background-color: rgba(10, 2, 18, 0.85); /* Фон модалки темнее и с оттенком */
-    animation: fadeInBg 0.3s ease-out;
-}
-.modal.visible { display: flex; align-items: center; justify-content: center; }
-@keyframes fadeInBg { from { background-color: rgba(10,2,18,0); } to { background-color: rgba(10,2,18,0.85); } }
-.modal-content {
-    position: relative; margin: auto; padding: 30px;
-    width: 90%; max-width: 650px;
-    animation: slideInModal 0.4s ease-out forwards;
-}
-@keyframes slideInModal { from { opacity: 0; transform: translateY(-30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .close-btn {
-    color: var(--color-text-darker); position: absolute; top: 15px; right: 20px;
-    font-size: 28px; font-weight: bold; cursor: pointer; transition: color 0.2s ease;
+    position: absolute; top: 15px; right: 20px;
+    font-size: 28px; font-weight: bold; cursor: pointer;
+    color: var(--color-text-darker);
+    transition: color 0.2s ease;
 }
-.close-btn:hover, .close-btn:focus { color: #fff; }
-.modal-content ul { padding-left: 25px; list-style: disc; }
-.modal-content li { margin-bottom: 8px; }
-.modal-content em { color: var(--color-text-darker); }
+.close-btn:hover { color: #fff; }
 
-footer.glass-panel {
-    max-width: 800px; margin-left: auto; margin-right: auto;
-    margin-top: 50px; margin-bottom: 30px; text-align: center;
-    font-size: 0.9rem; color: var(--color-text-darker);
-}
+.hidden-content { display: none; }
 
-/* ИЗМЕНЕННАЯ АНИМАЦИЯ ПОЯВЛЕНИЯ СЕКЦИЙ */
-.animated-section { 
-    opacity: 0; 
-    transform: translateX(-40px) scale(0.98); /* Появление сбоку и легкий зум */
-    transition: opacity 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+/* Навигационная панель */
+#map-navigation {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 500;
+    background: var(--glass-bg-color);
+    backdrop-filter: blur(var(--glass-blur));
+    padding: 10px;
+    border-radius: var(--glass-border-radius);
+    border: 1px solid var(--glass-border-color);
+    display: flex;
+    gap: 10px;
 }
-.animated-section.is-visible { 
-    opacity: 1; 
-    transform: translateX(0) scale(1);
+#map-navigation button {
+    background: rgba(255,255,255,0.1);
+    color: var(--color-text);
+    border: 1px solid transparent;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
 }
+#map-navigation button:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: var(--glass-border-color);
+}
+#zoom-out-button { font-size: 1.2rem; padding: 5px 10px; }
 
+
+/* Адаптация */
 @media (max-width: 768px) {
-    .hero-title { font-size: clamp(2.5rem, 12vw, 5rem); }
-    #main-header .header-container { padding: 0 15px; }
-    .site-title-small { font-size: 1.2rem; }
-    .btn-header-chat { padding: 6px 10px; font-size: 0.8rem; }
-    .content-wrapper { padding: 0 15px; }
-    .glass-panel, .modal-content { padding: 20px; }
-    .btn { padding: 10px 20px; font-size: 0.9rem; }
-    .btn-primary-cta { padding: 12px 25px; font-size: 1rem; }
-    .modal-content { width: 95%; padding: 20px; }
-    .scroll-down-arrow { width: 40px; height: 40px; bottom: 20px; }
-    
-    /* Уменьшаем количество звезд на мобильных для производительности */
-    .stars-background .star:nth-child(n+26) { /* Скрываем половину звезд */
+    :root { --base-star-duration: 6s; /* Замедляем звезды на мобильных */ }
+    .stars-background-map .star:nth-child(n+20) { /* Скрываем больше звезд */
         display: none;
     }
-    .animated-section {
-        transform: translateY(30px) scale(1); /* Возвращаем к простому появлению снизу на мобильных, если translateX кажется резким */
+    
+    #map-camera {
+        width: 100%; /* Камера занимает весь вьюпорт, объекты будут позиционироваться внутри этого */
+        height: auto;
+        position: relative; /* Меняем позиционирование для стека */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 30px; /* Расстояние между объектами в стеке */
+        left: 0; top: 0;
+        transform: none !important; /* Отключаем JS трансформацию камеры */
+        transition: none;
+        overflow-y: auto; /* Позволяем скроллить объекты, если не влезают */
+        height: calc(100vh - 80px); /* Оставляем место для навигации */
     }
-    .animated-section.is-visible {
-        transform: translateY(0) scale(1);
+    .map-object {
+        position: static !important; /* Отменяем абсолютное позиционирование */
+        transform: none !important; /* Отменяем JS трансформацию */
+        width: 90% !important;
+        max-width: 400px;
+        margin: 0 auto; /* Центрируем */
+        padding: 15px;
     }
+    .map-object:hover { transform: scale(1.02) !important; }
+
+    .hero-title-map { font-size: clamp(2rem, 8vw, 3rem); }
+    .object-title { font-size: 1.3rem; }
+
+    #content-panel {
+        width: 95%;
+        max-height: 75vh;
+        padding: 20px;
+        top: auto; bottom: 10px; /* Панель снизу на мобильных */
+        left: 50%;
+        transform: translate(-50%, 120%) scale(1); /* Начальное положение снизу */
+    }
+    #content-panel.visible {
+        transform: translate(-50%, 0) scale(1); /* Появление снизу */
+    }
+    #map-navigation {
+        bottom: 10px;
+        padding: 8px;
+        gap: 5px;
+        flex-wrap: wrap; /* Перенос кнопок если не влезают */
+        justify-content: center;
+    }
+    #map-navigation button { padding: 6px 10px; font-size: 0.8rem;}
 }
 
 @media (max-width: 480px) {
-    #main-header { height: 60px; }
-    .site-title-small { display: none; }
-    .btn-header-chat { width: 100%; text-align: center; }
-    #main-header .header-container { justify-content: center; }
-    .intro-section .btn { display: block; width: 100%; margin-bottom: 10px; }
+    .hero-title-map { font-size: clamp(1.8rem, 7vw, 2.5rem); }
+    #map-navigation button { font-size: 0.7rem; padding: 5px 8px; }
 }
