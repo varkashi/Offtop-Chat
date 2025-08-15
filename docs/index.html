@@ -3,111 +3,1014 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Offtop Chat</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>Offtop Chat - Откройте мир общения без границ</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="noise-overlay"></div>
-    <div class="cursor-trail"></div> <!-- Для "Пульсара Курсора" -->
 
-    <!-- Полноэкранный заголовок (Hero) -->
-    <section id="hero-header">
-        <div class="stars-background">
-            <!-- Оставляем 30 звезд, остальные будут скрыты CSS -->
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-            <div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
-            <!-- Остальные 20 звезд из оригинальных 50 можно удалить из HTML или оставить, CSS их скроет -->
-        </div>
-        <h1 class="hero-title">Offtop Chat</h1>
-        <a href="#main-content" class="scroll-down-arrow" aria-label="Прокрутить вниз">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M11.9999 13.1714L16.9497 8.22168L18.3639 9.63589L11.9999 15.9999L5.63599 9.63589L7.0502 8.22168L11.9999 13.1714Z"></path>
-            </svg>
-        </a>
-    </section>
-
-    <!-- Основной фиксированный хедер (появляется при скролле) -->
-    <header id="main-header">
-        <div class="header-container">
-            <div class="site-title-small">Offtop Chat</div>
-            <a href="https://t.me/OfftopEasyAPK" target="_blank" rel="noopener noreferrer" class="btn btn-header-chat">
-                💬 В чат
-            </a>
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="images/chat-avatar.png" alt="Логотип Offtop Chat" class="chat-avatar">
+                <span>Offtop Chat</span>
+            </div>
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li><a href="#about-chat" class="nav-link">О чате</a></li>
+                    <li><a href="#rules" class="nav-link">Правила</a></li>
+                    <li><a href="#about-us" class="nav-link">О нас</a></li>
+                    <li><a href="#projects" class="nav-link">Проекты</a></li>
+                </ul>
+                <a href="https://t.me/OfftopEasyAPK" class="cta-button nav-cta" target="_blank" rel="noopener noreferrer">
+                    Присоединиться к чату
+                </a>
+            </nav>
+            <button class="hamburger" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <!-- Основной контент страницы -->
-    <main id="main-content">
-        <div class="content-wrapper">
-            <!-- Секция Описания и главной кнопки -->
-            <section class="intro-section glass-panel animated-section">
-                <p class="description">Этот чат - место, где все участники смогут обсудить любые темы и приятно провести время.</p>
-                <a href="https://t.me/OfftopEasyAPK" target="_blank" rel="noopener noreferrer" class="btn btn-primary-cta">
-                    🚀 Присоединиться к Offtop Chat
+    <main>
+        <section class="hero-section section-hidden">
+            <div class="container">
+                <h1 class="hero-title">Offtop Chat</h1>
+                <p class="hero-slogan">Откройте для себя мир общения без границ.</p>
+                <a href="https://t.me/OfftopEasyAPK" class="cta-button hero-cta" target="_blank" rel="noopener noreferrer">
+                    Присоединиться к чату
                 </a>
-                <button id="openRulesBtn" class="btn btn-secondary rules-button">
-                    📜 Правила чата
-                </button>
-            </section>
+                <p class="hero-description">
+                    Добро пожаловать в Offtop Chat – место, где нет запретных тем и всегда найдется повод для смеха!
+                    Общайтесь, делитесь идеями, находите новых друзей и наслаждайтесь непринужденной атмосферой.
+                    Здесь царит дружелюбие, юмор и свобода слова для всех, кто молод душой и ищет единомышленников.
+                </p>
+            </div>
+        </section>
 
-            <!-- Секция: Главные лица проекта -->
-            <section id="key-people" class="content-section glass-panel animated-section">
-                <h2>👤 Главные лица проекта</h2>
-                <ul class="people-list">
-                    <li><a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">varkashi</a> - основатель</li>
-                </ul>
-            </section>
+        <section id="about-chat" class="features-section section-hidden">
+            <div class="container">
+                <h2 class="section-title">Почему именно Offtop Chat?</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <img src="images/icon-freedom.png" alt="Иконка свободы общения" class="feature-icon">
+                        <h3>Свобода общения</h3>
+                        <p>Обсуждайте любые темы, делитесь мыслями и мнениями без ограничений. Здесь нет запретов для вашей фантазии!</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="images/icon-community.png" alt="Иконка дружелюбного комьюнити" class="feature-icon">
+                        <h3>Дружелюбное комьюнити</h3>
+                        <p>Находите единомышленников и заводите новых друзей. Наше сообщество всегда радо новым лицам и открыто к общению.</p>
+                    </div>
+                    <div class="feature-item">
+                        <img src="images/icon-activity.png" alt="Иконка активного общения" class="feature-icon">
+                        <h3>Активное общение</h3>
+                        <p>Чат всегда живой и наполнен интересными разговорами. Вы никогда не заскучаете – диалоги кипят круглосуточно!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-            <!-- Секция: Полезные ссылки -->
-            <section id="useful-links" class="content-section glass-panel animated-section">
-                <h2>🔗 Полезные ссылки</h2>
-                <ul class="links-list">
-                    <li><a href="https://t.me/OfftopChatHeroes" target="_blank" rel="noopener noreferrer">@OfftopChatHeroes</a> — Доска почета</li>
-                    <li><a href="https://t.me/agata_offtop_bot" target="_blank" rel="noopener noreferrer">@Agata_Offtop_bot</a> — Нейро-бот "Агата"</li>
-                    <li><a href="https://t.me/SponsorsOfftopChat" target="_blank" rel="noopener noreferrer">@SponsorsOfftopChat</a> — Спонсоры</li>
-                </ul>
-            </section>
+        <section id="rules" class="rules-section section-hidden">
+            <div class="container">
+                <h2 class="section-title">Правила и Рекомендации Offtop Chat</h2>
+                <div class="rules-content">
+                    <h3>Категорически Запрещено:</h3>
+                    <ul>
+                        <li>18+ контент (а также шокирующие кадры);</li>
+                        <li>Любое упоминание политики;</li>
+                        <li>Действия, нарушающие законодательство РФ;</li>
+                        <li>Несогласованная реклама;</li>
+                        <li>Дискриминация;</li>
+                        <li>Спам;</li>
+                    </ul>
+
+                    <h3>О поведении в чате:</h3>
+                    <p>
+                        Конфликты между участниками не запрещены, однако по требованию модератора каждая из сторон обязана их прекратить.
+                        Использование нецензурной лексики (мата) разрешено, но при этом не приветствуется токсичное поведение и проявления постоянной агрессии.
+                    </p>
+
+                    <h3>Система Наказаний:</h3>
+                    <p>
+                        В чате действует система предупреждений (<span class="popup-trigger" data-term="варн">варнов</span>): если вы накопили 5 <span class="popup-trigger" data-term="варн">варнов</span>, это приводит к получению <span class="popup-trigger" data-term="бан">бана</span>.
+                        За некоторые нарушения модератор вправе выдать <span class="popup-trigger" data-term="бан">бан</span> или <span class="popup-trigger" data-term="мут">мут</span> немедленно.
+                    </p>
+
+                    <h3>Контакты:</h3>
+                    <p>По любым вопросам (сотрудничество, разбан) писать: <a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a>.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-us" class="about-us-section section-hidden">
+            <div class="container">
+                <h2 class="section-title">О нас</h2>
+
+                <div class="history-block">
+                    <h3>История Offtop Chat</h3>
+                    <p>
+                        История Offtop Chat началась **24 июля 2024 года**, когда был основан наш нынешний чат. Однако ему предшествовала еще одна попытка создать подобное пространство, которая, к сожалению, со временем была заброшена. Изначально Offtop Chat был создан для того, чтобы участники чата <a href="https://t.me/ChatEasyAPK" target="_blank" rel="noopener noreferrer">@ChatEasyAPK</a> получили возможность свободно общаться на любые темы, не опасаясь наказаний за оффтоп.
+                    </p>
+                    <p>
+                        Со временем, благодаря нашему активному и дружелюбному сообществу, чат вырос и преобразился, став именно таким, каким вы видите его сегодня – местом для безграничного общения, смеха и поиска единомышленников.
+                    </p>
+                </div>
+
+                <div class="team-block">
+                    <h3>Команда Offtop Chat</h3>
+                    <div class="team-member">
+                        <img src="images/owner-avatar.png" alt="Аватарка владельца" class="member-avatar">
+                        <h4><a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a> (varkashi)</h4>
+                        <p class="member-role">Владелец, основатель Offtop Chat.</p>
+                        <p class="member-bio">Владелец канала <a href="https://t.me/ClownsEasyAPK" target="_blank" rel="noopener noreferrer">@ClownsEasyAPK</a>, бывший модератор <a href="https://t.me/ChatEasyAPK" target="_blank" rel="noopener noreferrer">@ChatEasyAPK</a>, и участник других проектов в Telegram.</p>
+                    </div>
+                    <p class="moderators-note">
+                        Порядок и дружелюбную атмосферу в чате также поддерживает команда преданных модераторов.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects-section section-hidden">
+            <div class="container">
+                <h2 class="section-title">Наши проекты и полезные ссылки</h2>
+                <div class="project-list">
+                    <div class="project-item">
+                        <img src="images/easyapk-logo.png" alt="Логотип EasyAPK" class="project-logo">
+                        <a href="https://t.me/EasyAPK" target="_blank" rel="noopener noreferrer">EasyAPK</a>
+                        <p class="project-description">Игры и программы на Android.</p>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/clowns-easyapk-logo.png" alt="Логотип Клоуны EasyAPK" class="project-logo">
+                        <a href="https://t.me/clownseasyapk" target="_blank" rel="noopener noreferrer">Клоуны EasyAPK</a>
+                        <p class="project-description">Сборник смешных переписок в EasyAPK.</p>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/agata-bot-logo.png" alt="Логотип Чат-бот Агата" class="project-logo">
+                        <a href="http://t.me/agata_offtop_bot" class="agata-link" target="_blank" rel="noopener noreferrer">Чат-бот Агата</a>
+                        <p class="project-description">ИИ-бот, созданный специально для Offtop Chat. <span class="small-text-hint">Создан в конструкторе ИИ-ботов <a href="https://t.me/FlearyBot" target="_blank" rel="noopener noreferrer">@FlearyBot</a>.</span></p>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/mguys-logo.png" alt="Логотип MGuys" class="project-logo">
+                        <a href="https://t.me/meaguys" target="_blank" rel="noopener noreferrer">MGuys</a>
+                        <p class="project-description">Канал модераторов EasyAPK.</p>
+                    </div>
+                    <div class="project-item">
+                        <img src="images/varkashis-logo.png" alt="Логотип varkashi's" class="project-logo">
+                        <a href="https://t.me/pidarebuchi" target="_blank" rel="noopener noreferrer">varkashi's</a>
+                        <p class="project-description">Канал основателя Offtop Chat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popup definitions for rules -->
+        <div id="popup-overlay" class="popup-overlay">
+            <div class="popup-content">
+                <button class="close-popup">&times;</button>
+                <h3 id="popup-title"></h3>
+                <p id="popup-description"></p>
+            </div>
         </div>
+
     </main>
 
-    <!-- Подвал сайта -->
-    <footer class="glass-panel">
-        <p><span id="footer-year"></span> Offtop Chat. Все права защищены.</p>
-    </footer>
-
-    <!-- Модальное окно (Pop-up) с правилами -->
-    <div id="rulesModal" class="modal">
-        <div class="modal-content glass-panel">
-            <span class="close-btn">×</span>
-            <h2>📜 Правила чата "Offtop Chat"</h2>
-            
-            <h3>❌ Запрещено:</h3>
-            <ul>
-                <li>18+ контент (а также шокирующие кадры);</li>
-                <li>Любое упоминание политики;</li>
-                <li>Действия, нарушающие законы;</li>
-                <li>Несогласованная реклама;</li>
-                <li>Дискриминация;</li>
-                <li>Спам.</li>
-            </ul>
-
-            <p><em>Конфликты не запрещены, но каждая из сторон должна его прекратить по требованию модератора. Мат разрешен. Не приветствуется токсичное поведение и постоянная агрессия.</em></p>
-            
-            <h3>🔇 Наказания:</h3>
-            <p>В чате действует система предупреждений (варнов), если вы накопили 5 варнов, то вы получаете бан. За некоторые нарушения, модератор в праве выдать вам бан или мут.</p>
-            
-            <h3>💬 По любым вопросам:</h3>
-            <p>Сотрудничество, разбан — писать <a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a>.</p>
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2025 Offtop Chat. Все права защищены.</p>
+            <a href="https://t.me/OfftopEasyAPK" target="_blank" rel="noopener noreferrer" class="telegram-icon-link" aria-label="Присоединиться к Offtop Chat в Telegram">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </a>
         </div>
-    </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
 </html>
+``````css
+:root {
+    --color-primary-bg: #F5F5F5; /* Светло-серый фон */
+    --color-secondary-bg: #FFFFFF; /* Белый фон для карточек/модалок */
+    --color-text-dark: #333333; /* Темный текст */
+    --color-text-light: #666666; /* Светлый текст */
+
+    --color-accent-violet: #8A2BE2; /* Насыщенный Фиолетовый */
+    --color-accent-violet-light: #A562FF; /* Более светлый фиолетовый */
+    --color-accent-pink: #FF69B4; /* Яркий Розовый (Hot Pink) */
+    --color-accent-pink-light: #FF9ACB; /* Более светлый розовый */
+
+    --header-height: 80px; /* Высота хедера */
+    --border-radius-soft: 12px; /* Закругленные углы */
+    --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08); /* Легкая тень */
+    --box-shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15); /* Средняя тень */
+}
+
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    background-color: var(--color-primary-bg);
+    overflow-x: hidden; /* Предотвращаем горизонтальный скролл при анимациях */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-text-dark);
+    line-height: 1.2;
+}
+
+h1 { font-size: 3em; }
+h2 { font-size: 2.5em; }
+h3 { font-size: 1.8em; }
+h4 { font-size: 1.4em; }
+
+a {
+    color: var(--color-accent-violet);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent-pink);
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-accent-violet);
+    color: var(--color-secondary-bg);
+    padding: 12px 30px;
+    border-radius: var(--border-radius-soft);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: var(--box-shadow-light);
+}
+
+.cta-button:hover {
+    background-color: var(--color-accent-pink);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+    color: var(--color-accent-violet);
+}
+
+/* Header */
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон по умолчанию */
+}
+
+.header.scrolled {
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(15px); /* Жидкое стекло */
+    -webkit-backdrop-filter: blur(15px); /* Для Webkit-браузеров */
+    box-shadow: var(--box-shadow-light);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6em;
+    font-weight: 700;
+    color: var(--color-accent-violet);
+}
+
+.logo .chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover; /* Для изображений, чтобы они не растягивались */
+}
+
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-list li {
+    margin-left: 30px;
+}
+
+.nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: var(--color-text-dark);
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-pink);
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-cta {
+    margin-left: 30px;
+    animation: pulse 2s infinite; /* Пульсация кнопки */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7); }
+    70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(138, 43, 226, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); }
+}
+
+.hamburger {
+    display: none; /* Скрыто по умолчанию на ПК */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1100; /* Выше nav-list при открытии */
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-accent-violet);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* Hero Section */
+.hero-section {
+    background: linear-gradient(135deg, var(--color-primary-bg) 0%, var(--color-accent-violet-light) 100%); /* Мягкий фиолетовый градиент */
+    text-align: center;
+    padding: 120px 0 80px;
+    min-height: calc(100vh - var(--header-height)); /* Занимает почти всю высоту экрана */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative; /* Для анимаций */
+    top: var(--header-height); /* Смещение, чтобы хедер не перекрывал */
+    margin-bottom: var(--header-height); /* Компенсация смещения */
+}
+
+
+.hero-title {
+    font-size: 4em;
+    color: var(--color-accent-violet);
+    margin-bottom: 10px;
+    font-weight: 700;
+    opacity: 0; transform: translateY(20px); /* Анимация */
+}
+
+.hero-slogan {
+    font-size: 1.8em;
+    color: var(--color-text-dark);
+    margin-bottom: 40px;
+    font-weight: 500;
+    opacity: 0; transform: translateY(20px); /* Анимация */
+    transition-delay: 0.1s;
+}
+
+.hero-cta {
+    margin-bottom: 40px;
+    opacity: 0; transform: translateY(20px); /* Анимация */
+    transition-delay: 0.2s;
+}
+
+.hero-description {
+    max-width: 800px;
+    font-size: 1.1em;
+    color: var(--color-text-light);
+    opacity: 0; transform: translateY(20px); /* Анимация */
+    transition-delay: 0.3s;
+}
+
+/* Sections common style for scroll reveal */
+section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1; /* Чтобы не перекрывалось header'ом */
+    background-color: var(--color-primary-bg);
+}
+
+section:nth-of-type(even) {
+    background-color: var(--color-secondary-bg); /* Чередование фонов */
+}
+
+/* Scroll reveal animations */
+.section-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.section-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Features Section */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    background-color: var(--color-secondary-bg);
+    border-radius: var(--border-radius-soft);
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--box-shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.feature-item h3 {
+    color: var(--color-accent-violet);
+    margin-top: 15px;
+    font-weight: 600;
+}
+
+.feature-item p {
+    color: var(--color-text-light);
+    font-size: 0.95em;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+/* Rules Section */
+.rules-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--color-secondary-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-soft);
+    box-shadow: var(--box-shadow-light);
+}
+
+.rules-content ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.rules-content ul li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+    color: var(--color-text-dark);
+}
+
+.rules-content ul li::before {
+    content: '•'; /* Маркер списка */
+    color: var(--color-accent-violet);
+    font-size: 1.2em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.rules-content h3 {
+    color: var(--color-accent-violet);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.popup-trigger {
+    color: var(--color-accent-violet);
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.popup-trigger:hover {
+    color: var(--color-accent-pink);
+}
+
+/* Popup Overlay */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.popup-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup-content {
+    background-color: rgba(255, 255, 255, 0.8); /* Фон для попапа */
+    backdrop-filter: blur(20px); /* Эффект жидкого стекла для попапа */
+    -webkit-backdrop-filter: blur(20px); /* Для Webkit-браузеров */
+    padding: 30px;
+    border-radius: var(--border-radius-soft);
+    box-shadow: var(--box-shadow-medium);
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease; /* Анимация появления */
+}
+
+.popup-overlay.active .popup-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 2em;
+    cursor: pointer;
+    color: var(--color-text-light);
+    transition: color 0.2s ease;
+}
+
+.close-popup:hover {
+    color: var(--color-accent-pink);
+}
+
+#popup-title {
+    color: var(--color-accent-violet);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.6em;
+}
+
+#popup-description {
+    color: var(--color-text-dark);
+    font-size: 1.0em;
+}
+
+/* About Us Section */
+.about-us-section {
+    background-color: var(--color-primary-bg);
+}
+
+.history-block,
+.team-block {
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    background-color: var(--color-secondary-bg);
+    padding: 40px;
+    border-radius: var(--border-radius-soft);
+    box-shadow: var(--box-shadow-light);
+}
+
+.history-block h3,
+.team-block h3 {
+    color: var(--color-accent-violet);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.history-block p {
+    margin-bottom: 15px;
+    color: var(--color-text-dark);
+}
+
+.history-block p strong {
+    color: var(--color-accent-violet);
+}
+
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.member-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--color-accent-violet);
+    box-shadow: var(--box-shadow-light);
+}
+
+.team-member h4 {
+    font-size: 1.8em;
+    color: var(--color-accent-violet);
+    margin-bottom: 5px;
+}
+
+.team-member h4 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.team-member .member-role {
+    font-size: 1.1em;
+    color: var(--color-text-light);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.team-member .member-bio {
+    max-width: 600px;
+    font-size: 0.95em;
+    color: var(--color-text-dark);
+}
+
+.moderators-note {
+    text-align: center;
+    margin-top: 30px;
+    font-style: italic;
+    color: var(--color-text-light);
+}
+
+/* Projects Section */
+.project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.project-item {
+    background-color: var(--color-secondary-bg);
+    border-radius: var(--border-radius-soft);
+    padding: 25px;
+    text-align: center;
+    box-shadow: var(--box-shadow-light);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--box-shadow-medium);
+}
+
+.project-item .project-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid var(--color-accent-pink);
+}
+
+.project-item a {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3em;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-bottom: 5px;
+    display: block; /* Чтобы ссылка занимала всю ширину */
+}
+
+.project-item a:hover {
+    color: var(--color-accent-violet);
+}
+
+.project-description {
+    font-size: 0.9em;
+    color: var(--color-text-light);
+    margin-top: 10px;
+}
+
+.small-text-hint {
+    font-size: 0.8em;
+    color: var(--color-text-light);
+    display: block; /* Отдельная строка */
+    margin-top: 5px;
+}
+
+.small-text-hint a {
+    color: var(--color-text-light); /* Сохраняем цвет, чтобы не сильно выделялось */
+    text-decoration: underline;
+}
+
+.small-text-hint a:hover {
+    color: var(--color-accent-pink);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-text-dark);
+    color: var(--color-secondary-bg);
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Для мобильных */
+}
+
+.footer-content p {
+    margin: 0;
+    margin-right: 20px;
+}
+
+.telegram-icon-link {
+    display: inline-flex; /* Для SVG */
+    align-items: center;
+    justify-content: center;
+    color: var(--color-secondary-bg);
+    transition: color 0.3s ease;
+}
+
+.telegram-icon-link:hover {
+    color: var(--color-accent-pink);
+}
+
+.telegram-icon-link svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    h1 { font-size: 2.8em; }
+    h2 { font-size: 2em; }
+    h3 { font-size: 1.5em; }
+    .header {
+        height: 60px;
+    }
+    .hero-section {
+        padding-top: 100px;
+        min-height: calc(100vh - 60px);
+        margin-bottom: 60px;
+    }
+    .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
+    }
+
+    .nav.active {
+        transform: translateX(0);
+    }
+
+    .nav-list {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-list li {
+        margin: 20px 0;
+    }
+
+    .nav-link {
+        font-size: 1.8em;
+        font-weight: 600;
+        color: var(--color-accent-violet);
+    }
+
+    .nav-link::after {
+        background-color: var(--color-accent-pink); /* чтобы лучше видно было на мобильном */
+        height: 3px;
+    }
+
+    .nav-cta {
+        margin-top: 30px;
+        margin-left: 0;
+        font-size: 1.3em;
+        padding: 15px 40px;
+    }
+
+    .hamburger {
+        display: flex; /* Показать гамбургер на мобильных */
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rules-content,
+    .history-block,
+    .team-block,
+    .project-list {
+        padding: 25px;
+    }
+
+    .project-list {
+        grid-template-columns: 1fr;
+    }
+    .footer-content {
+        flex-direction: column;
+    }
+    .footer-content p {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+``````javascript
+document.addEventListener('DOMContentLoaded', () => {
+    // ----------------------------------------------------
+    // Навигация и Хедер (гамбургер-меню и sticky header)
+    // ----------------------------------------------------
+    const header = document.querySelector('.header');
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const navLinks = document.querySelectorAll('.nav-link, .nav-cta'); // Все ссылки в меню, включая CTA
+
+    // Sticky Header
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+
+    // Hamburger menu toggle
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll'); // Для блокировки прокрутки под меню
+    });
+
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+    });
+
+    // ----------------------------------------------------
+    // Popup для правил (Варн, Мут, Бан)
+    // ----------------------------------------------------
+    const popupTriggers = document.querySelectorAll('.popup-trigger');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const closePopupButton = document.querySelector('.close-popup');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDescription = document.getElementById('popup-description');
+
+    const definitions = {
+        'варн': {
+            title: 'Варн (Предупреждение)',
+            description: 'Это предупреждение от модератора за нарушение правил. Каждое предупреждение приближает вас к исключению из чата.'
+        },
+        'мут': {
+            title: 'Мут (Блокировка ввода сообщений)',
+            description: 'Временное ограничение, при котором вы можете читать сообщения в чате, но не можете отправлять свои. Длительность мута определяется модератором.'
+        },
+        'бан': {
+            title: 'Бан (Блокировка доступа)',
+            description: 'Полное исключение из чата. Вы не сможете ни читать сообщения, ни отправлять свои, а также повторно присоединиться к чату, если не будет произведен разбан.'
+        }
+    };
+
+    popupTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const term = trigger.dataset.term;
+            if (definitions[term]) {
+                popupTitle.textContent = definitions[term].title;
+                popupDescription.textContent = definitions[term].description;
+                popupOverlay.classList.add('active');
+            }
+        });
+    });
+
+    closePopupButton.addEventListener('click', () => {
+        popupOverlay.classList.remove('active');
+    });
+
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            popupOverlay.classList.remove('active');
+        }
+    });
+
+    // ----------------------------------------------------
+    // Анимации при прокрутке (Scroll Reveal Animations)
+    // ----------------------------------------------------
+    const sections = document.querySelectorAll('section, .hero-title, .hero-slogan, .hero-cta, .hero-description');
+
+    const revealSection = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+                observer.unobserve(entry.target); // Остановить наблюдение после появления
+            }
+        });
+    };
+
+    const sectionObserver = new IntersectionObserver(revealSection, {
+        root: null, // viewport
+        threshold: 0.15 // Появление, когда 15% элемента видно
+    });
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+        // Дополнительно: некоторые элементы hero секции уже скрыты по умолчанию в CSS
+        // Мы добавляем 'section-hidden' для всех элементов для единообразия
+        // и 'section-visible' будет убирать это
+        if (!section.classList.contains('hero-title') &&
+            !section.classList.contains('hero-slogan') &&
+            !section.classList.contains('hero-cta') &&
+            !section.classList.contains('hero-description')) {
+            section.classList.add('section-hidden');
+        }
+    });
+
+    // Initial check for hero section elements on load
+    const heroElements = document.querySelectorAll('.hero-title, .hero-slogan, .hero-cta, .hero-description');
+    heroElements.forEach(el => el.classList.add('section-visible')); // Делаем их видимыми сразу при загрузке
+
+});
