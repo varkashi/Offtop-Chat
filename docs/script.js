@@ -1,158 +1,125 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    // ----------------------------------------------------
+    // Навигация и Хедер (гамбургер-меню и sticky header)
+    // ----------------------------------------------------
+    const header = document.querySelector('.header');
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('.nav');
+    const navLinks = document.querySelectorAll('.nav-link, .nav-cta'); // Все ссылки в меню, включая CTA
 
-    // --- Динамический год в футере ---
-    const footerYearSpan = document.getElementById('footer-year');
-    if (footerYearSpan) {
-        footerYearSpan.textContent = `© ${new Date().getFullYear()}`;
-    }
-
-    // --- Пульсар Курсора ---
-    const cursorTrail = document.querySelector('.cursor-trail');
-    if (cursorTrail && !isMobile) { // Отключаем на мобильных
-        document.addEventListener('mousemove', (e) => {
-            requestAnimationFrame(() => {
-                cursorTrail.style.left = `${e.clientX}px`;
-                cursorTrail.style.top = `${e.clientY}px`;
-            });
-        });
-        // Небольшая задержка для скрытия, если курсор покинул окно
-        document.addEventListener('mouseleave', () => {
-            cursorTrail.style.opacity = '0';
-            cursorTrail.style.transform = 'translate(-50%, -50%) scale(0)';
-        });
-        document.addEventListener('mouseenter', () => { // Показываем при возвращении
-             if (document.body.matches(':hover')) { // Убедимся что курсор действительно над body
-                cursorTrail.style.opacity = '1';
-                cursorTrail.style.transform = 'translate(-50%, -50%) scale(1)';
-             }
-        });
-    }
-
-
-    // --- Логика для модального окна (Pop-up) ---
-    const modal = document.getElementById('rulesModal');
-    const openBtn = document.getElementById('openRulesBtn');
-    const closeBtn = modal ? modal.querySelector('.close-btn') : null;
-
-    function openModal() {
-        if (modal) {
-            modal.classList.add('visible');
-            document.body.style.overflow = 'hidden'; 
+    // Sticky Header
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 0) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
         }
-    }
+    });
 
-    function closeModal() {
-        if (modal) {
-            modal.classList.remove('visible');
-            setTimeout(() => {
-                if (!document.querySelector('.modal.visible')) {
-                    document.body.style.overflow = 'auto';
-                }
-            }, 500); // Соответствует анимации slideInModalContent
-        }
-    }
+    // Hamburger menu toggle
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        nav.classList.toggle('active');
+        document.body.classList.toggle('no-scroll'); // Для блокировки прокрутки под меню
+    });
 
-    if (openBtn) openBtn.addEventListener('click', openModal);
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (modal) {
-        modal.addEventListener('click', (event) => {
-            if (event.target === modal) closeModal();
-        });
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && modal.classList.contains('visible')) closeModal();
-        });
-    }
-
-    // --- Логика для анимации хедера при скролле ---
-    const heroHeaderEl = document.getElementById('hero-header'); // Изменено имя переменной, чтобы не конфликтовать
-    const mainHeader = document.getElementById('main-header');
-    const heroHeight = heroHeaderEl ? heroHeaderEl.offsetHeight : 0; 
-    const scrollThreshold = heroHeight * 0.75; // Порог чуть дальше
-
-    function handleHeaderScroll() {
-        if (!mainHeader || !heroHeaderEl) return;
-        const scrolled = window.scrollY > scrollThreshold;
-        mainHeader.classList.toggle('visible', scrolled);
-        heroHeaderEl.classList.toggle('scrolled-past', scrolled);
-    }
-    
-    window.addEventListener('scroll', handleHeaderScroll, { passive: true });
-    handleHeaderScroll(); // Initial check
-
-    // --- Анимация появления контента при скролле (Intersection Observer) ---
-    const animatedSections = document.querySelectorAll('.animated-section');
-    if (animatedSections.length > 0 && "IntersectionObserver" in window) {
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); 
-                }
-            });
-        }, { rootMargin: "0px 0px -120px 0px" }); // Порог чуть раньше
-        animatedSections.forEach(section => sectionObserver.observe(section));
-    } else { // Fallback
-        animatedSections.forEach(section => section.classList.add('is-visible'));
-    }
-
-    // --- ЭФФЕКТЫ HERO СЕКЦИИ ---
-
-    // 1. Параллакс для звезд
-    const stars = document.querySelectorAll('.stars-background .star');
-    if (stars.length > 0 && !isMobile) {
-        stars.forEach(star => {
-            star.dataset.depth = Math.random() * 0.5 + 0.1; // от 0.1 до 0.6
-            star.style.setProperty('--initial-top', star.offsetTop + 'px'); // Сохраняем начальную позицию
-            star.style.setProperty('--initial-left', star.offsetLeft + 'px');
-        });
-
-        function handleStarParallax() {
-            if (window.scrollY < heroHeight) {
-                const scrollTop = window.scrollY;
-                stars.forEach(star => {
-                    const depth = parseFloat(star.dataset.depth) || 0.2;
-                    const movementY = -(scrollTop * depth * 0.25); // Уменьшил силу эффекта
-                    // Движение по X можно добавить для разнообразия, если курсор двигается
-                    // const movementX = (mouseX - window.innerWidth / 2) * depth * 0.01;
-                    star.style.transform = `translateY(${movementY}px)`; // translateX(${movementX}px)
-                });
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (nav.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                nav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             }
+        });
+    });
+
+    // ----------------------------------------------------
+    // Popup для правил (Варн, Мут, Бан)
+    // ----------------------------------------------------
+    const popupTriggers = document.querySelectorAll('.popup-trigger');
+    const popupOverlay = document.getElementById('popup-overlay');
+    const closePopupButton = document.querySelector('.close-popup');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDescription = document.getElementById('popup-description');
+
+    const definitions = {
+        'варн': {
+            title: 'Варн (Предупреждение)',
+            description: 'Это предупреждение от модератора за нарушение правил. Каждое предупреждение приближает вас к исключению из чата.'
+        },
+        'мут': {
+            title: 'Мут (Блокировка ввода сообщений)',
+            description: 'Временное ограничение, при котором вы можете читать сообщения в чате, но не можете отправлять свои. Длительность мута определяется модератором.'
+        },
+        'бан': {
+            title: 'Бан (Блокировка доступа)',
+            description: 'Полное исключение из чата. Вы не сможете ни читать сообщения, ни отправлять свои, а также повторно присоединиться к чату, если не будет произведен разбан.'
         }
-        window.addEventListener('scroll', () => {
-            requestAnimationFrame(handleStarParallax);
-        }, { passive: true });
-    }
+    };
 
-    // 2. 3D поворот для Hero Title
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle && heroHeaderEl && !isMobile) { 
-        heroHeaderEl.addEventListener('mousemove', (e) => {
-            const rect = heroHeaderEl.getBoundingClientRect();
-            // Координаты курсора относительно центра hero-секции
-            const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2); 
-            const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-
-            const maxRotate = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--hero-title-max-rotate')) || 6;
-
-            requestAnimationFrame(() => {
-                heroTitle.style.transform = `rotateX(${-y * maxRotate}deg) rotateY(${x * maxRotate}deg) translateZ(15px)`;
-                // Динамическое изменение свечения (интенсивность)
-                const baseShadow = `0 0 10px rgba(250, 221, 255, ${0.6 + Math.abs(y)*0.2}),
-                                  0 0 20px rgba(255, 255, 255, ${0.3 + Math.abs(x)*0.15}),
-                                  0 0 30px rgba(224, 39, 159, ${0.2 + Math.abs(y+x)*0.1})`;
-                heroTitle.style.textShadow = baseShadow;
-            });
+    popupTriggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const term = trigger.dataset.term;
+            if (definitions[term]) {
+                popupTitle.textContent = definitions[term].title;
+                popupDescription.textContent = definitions[term].description;
+                popupOverlay.classList.add('active');
+            }
         });
+    });
 
-        heroHeaderEl.addEventListener('mouseleave', () => {
-            requestAnimationFrame(() => {
-                heroTitle.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px)';
-                heroTitle.style.textShadow = `0 0 10px rgba(250, 221, 255, 0.6),
-                                            0 0 20px rgba(255, 255, 255, 0.3),
-                                            0 0 30px rgba(224, 39, 159, 0.2)`;
-            });
+    closePopupButton.addEventListener('click', () => {
+        popupOverlay.classList.remove('active');
+    });
+
+    popupOverlay.addEventListener('click', (e) => {
+        if (e.target === popupOverlay) {
+            popupOverlay.classList.remove('active');
+        }
+    });
+
+    // ----------------------------------------------------
+    // Анимации при прокрутке (Scroll Reveal Animations)
+    // ----------------------------------------------------
+    const sections = document.querySelectorAll('section, .hero-title, .hero-slogan, .hero-cta, .hero-description');
+
+    const revealSection = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('section-visible');
+                observer.unobserve(entry.target); // Остановить наблюдение после появления
+            }
         });
-    }
+    };
+
+    const sectionObserver = new IntersectionObserver(revealSection, {
+        root: null, // viewport
+        threshold: 0.15 // Появление, когда 15% элемента видно
+    });
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+        // Дополнительно: некоторые элементы hero секции уже скрыты по умолчанию в CSS
+        // Мы добавляем 'section-hidden' для всех элементов для единообразия
+        // и 'section-visible' будет убирать это
+        if (!section.classList.contains('hero-title') &&
+            !section.classList.contains('hero-slogan') &&
+            !section.classList.contains('hero-cta') &&
+            !section.classList.contains('hero-description')) {
+            section.classList.add('section-hidden');
+        }
+    });
+
+    // Initial check for hero section elements on load
+    const heroElements = document.querySelectorAll('.hero-title, .hero-slogan, .hero-cta, .hero-description');
+    // For Hero section elements, we want them to animate immediately on page load,
+    // so we trigger the 'section-visible' class after a small delay.
+    // The initial CSS for these elements should set their opacity to 0 and transform.
+    heroElements.forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.add('section-visible');
+        }, 100 * index); // Staggered animation for hero elements
+    });
+
 });
