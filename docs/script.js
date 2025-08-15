@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
-    const navLinks = document.querySelectorAll('.nav-link, .nav-cta'); // Все ссылки в меню, включая CTA
+    const navLinks = document.querySelectorAll('.nav-link, .nav-cta-header'); // Все ссылки в меню, включая CTA в хедере
 
     // Sticky Header
     window.addEventListener('scroll', () => {
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // Анимации при прокрутке (Scroll Reveal Animations)
     // ----------------------------------------------------
-    const sections = document.querySelectorAll('section, .hero-title, .hero-slogan, .hero-cta, .hero-description');
+    const sections = document.querySelectorAll('section:not(.hero-section), .hero-title, .hero-slogan, .hero-cta, .hero-description');
 
     const revealSection = (entries, observer) => {
         entries.forEach(entry => {
@@ -99,27 +99,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     sections.forEach(section => {
-        sectionObserver.observe(section);
-        // Дополнительно: некоторые элементы hero секции уже скрыты по умолчанию в CSS
-        // Мы добавляем 'section-hidden' для всех элементов для единообразия
-        // и 'section-visible' будет убирать это
+        // Убедимся, что hero-секция не получает section-hidden, она анимируется отдельно
         if (!section.classList.contains('hero-title') &&
             !section.classList.contains('hero-slogan') &&
             !section.classList.contains('hero-cta') &&
             !section.classList.contains('hero-description')) {
             section.classList.add('section-hidden');
         }
+        sectionObserver.observe(section);
     });
 
-    // Initial check for hero section elements on load
+    // Initial animation for hero section elements on load
     const heroElements = document.querySelectorAll('.hero-title, .hero-slogan, .hero-cta, .hero-description');
-    // For Hero section elements, we want them to animate immediately on page load,
-    // so we trigger the 'section-visible' class after a small delay.
-    // The initial CSS for these elements should set their opacity to 0 and transform.
     heroElements.forEach((el, index) => {
         setTimeout(() => {
             el.classList.add('section-visible');
-        }, 100 * index); // Staggered animation for hero elements
+        }, 150 * index); // Staggered animation for hero elements
     });
 
 });
