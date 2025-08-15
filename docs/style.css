@@ -1,20 +1,20 @@
 :root {
-    --color-primary-bg: #F5F5F5; /* Светло-серый фон */
-    --color-secondary-bg: #FFFFFF; /* Белый фон для карточек/модалок */
-    --color-text-dark: #333333; /* Темный текст */
-    --color-text-light: #666666; /* Светлый текст */
+    --color-primary-bg: #FDFDFD; /* Очень светлый, почти белый фон с теплым оттенком */
+    --color-secondary-bg: #FFFFFF; /* Чистый белый фон для карточек/модалок */
+    --color-text-dark: #2A2A2A; /* Насыщенный темно-серый текст */
+    --color-text-light: #555555; /* Средний серый текст */
 
-    --color-accent-violet: #6A0AD2; /* Насыщенный Фиолетовый (чуть темнее и насыщеннее) */
-    --color-accent-violet-dark: #4A009C; /* Темнее фиолетовый для ховера */
-    --color-accent-violet-light: #A562FF; /* Более светлый фиолетовый для градиента */
-    --color-accent-pink: #FF69B4; /* Яркий Розовый (Hot Pink) */
-    --color-accent-pink-light: #FF9ACB; /* Более светлый розовый */
+    --color-accent-violet: #5F00B7; /* Глубокий Индиго-Фиолетовый */
+    --color-accent-violet-dark: #4A009C; /* Более темный фиолетовый для ховера */
+    --color-accent-violet-light: #9C27B0; /* Светлее фиолетовый для градиента (более насыщенный) */
+    --color-accent-pink: #FF33CC; /* Яркий Розовый (Фуксия) */
+    --color-accent-pink-light: #FF85E3; /* Более светлый розовый */
 
     --header-height-desktop: 80px; /* Высота хедера на ПК */
     --header-height-mobile: 60px; /* Высота хедера на мобильных */
     --border-radius-soft: 12px; /* Закругленные углы */
-    --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08); /* Легкая тень */
-    --box-shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15); /* Средняя тень */
+    --box-shadow-light: 0 6px 20px rgba(0, 0, 0, 0.08); /* Мягкая, рассеянная тень */
+    --box-shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
 }
 
 /* Общие стили */
@@ -42,27 +42,41 @@ h1, h2, h3, h4 {
     font-family: 'Montserrat', sans-serif;
     color: var(--color-text-dark);
     line-height: 1.2;
+    letter-spacing: 0.02em; /* Добавляем легкий интервал между буквами */
 }
 
-h1 { font-size: 3em; }
-h2 { font-size: 2.5em; }
-h3 { font-size: 1.8em; }
-h4 { font-size: 1.4em; }
+h1 { 
+    font-size: 3.5em; /* Чуть крупнее для главного заголовка */
+    font-weight: 300; /* Более тонкий вес для элегантности */
+}
+h2 { 
+    font-size: 2.8em; 
+    font-weight: 400; /* Обычный вес для заголовков секций */
+}
+h3 { 
+    font-size: 1.9em; 
+    font-weight: 600; /* Более жирный для подзаголовков */
+}
+h4 { 
+    font-size: 1.5em; 
+    font-weight: 700; 
+}
 
 a {
     color: var(--color-accent-violet);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 a:hover {
     color: var(--color-accent-pink);
+    text-decoration: underline;
 }
 
 .cta-button {
     display: inline-block;
     background-color: var(--color-accent-violet);
-    color: var(--color-secondary-bg);
+    color: var(--color-secondary-bg); /* Текст всегда белый */
     padding: 12px 30px;
     border-radius: var(--border-radius-soft);
     text-decoration: none;
@@ -70,20 +84,22 @@ a:hover {
     font-size: 1.1em;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: var(--box-shadow-light);
+    border: none; /* Убираем стандартный бордер */
 }
 
 .cta-button:hover {
     background-color: var(--color-accent-violet-dark); /* Темнее фиолетовый при наведении */
     transform: translateY(-2px);
     box-shadow: var(--box-shadow-medium);
+    color: var(--color-secondary-bg); /* Убеждаемся, что текст остается белым */
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 60px;
-    font-weight: 700;
+    margin-bottom: 80px; /* Увеличиваем отступ */
+    font-weight: 400; /* Более тонкий вес */
     color: var(--color-accent-violet);
-    font-size: 2.8em; /* Чуть крупнее заголовки секций */
+    font-size: 2.8em;
 }
 
 /* Custom Scrollbar (WebKit) */
@@ -103,7 +119,7 @@ a:hover {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent-pink);
+    background: var(--color-accent-pink); /* При наведении на скроллбар - розовый */
 }
 
 
@@ -123,8 +139,8 @@ a:hover {
 
 .header.scrolled {
     background-color: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(15px); /* Жидкое стекло */
-    -webkit-backdrop-filter: blur(15px); /* Для Webkit-браузеров */
+    backdrop-filter: blur(20px); /* Жидкое стекло */
+    -webkit-backdrop-filter: blur(20px); /* Для Webkit-браузеров */
     box-shadow: var(--box-shadow-light);
 }
 
@@ -142,6 +158,7 @@ a:hover {
     font-size: 1.6em;
     font-weight: 700;
     color: var(--color-accent-violet);
+    text-decoration: none; /* Убираем подчеркивание с лого */
 }
 
 .logo .chat-avatar {
@@ -175,6 +192,7 @@ a:hover {
     color: var(--color-text-dark);
     position: relative;
     padding-bottom: 5px;
+    letter-spacing: 0.02em; /* Интервал для навигации */
 }
 
 .nav-link::after {
@@ -182,7 +200,7 @@ a:hover {
     position: absolute;
     width: 0;
     height: 2px;
-    background-color: var(--color-accent-pink);
+    background-color: var(--color-accent-pink); /* Розовое подчеркивание при ховере */
     bottom: 0;
     left: 0;
     transition: width 0.3s ease;
@@ -194,8 +212,7 @@ a:hover {
 
 .nav-cta-header {
     margin-left: 30px; /* Отступ от навигации */
-    /* Пульсация убрана для хедера на ПК */
-    /* animation: none; */
+    animation: none; /* Отключаем пульсацию для хедера */
 }
 
 .hamburger {
@@ -241,7 +258,6 @@ a:hover {
     justify-content: center;
     flex-direction: column;
     position: relative;
-    /* margin-bottom: var(--header-height-desktop); /* Убрано, т.к. padding-top на body */
 }
 
 .hero-title, .hero-slogan, .hero-cta, .hero-description {
@@ -259,14 +275,14 @@ a:hover {
     font-size: 4em;
     color: var(--color-accent-violet);
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 300; /* Более тонкий вес */
 }
 
 .hero-slogan {
     font-size: 1.8em;
-    color: var(--color-text-dark);
+    color: var(--color-text-dark); /* Делаем текст темнее */
     margin-bottom: 40px;
-    font-weight: 500;
+    font-weight: 400; /* Обычный вес */
 }
 
 .hero-cta {
@@ -275,27 +291,33 @@ a:hover {
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 10, 210, 0.7); } /* Используем темнее фиолетовый */
-    70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(106, 10, 210, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 10, 210, 0); }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(95, 0, 183, 0.7); } /* Используем новый фиолетовый */
+    70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(95, 0, 183, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(95, 0, 183, 0); }
 }
 
 .hero-description {
     max-width: 800px;
     font-size: 1.1em;
-    color: var(--color-text-light);
+    color: var(--color-text-dark); /* Делаем текст темнее */
 }
 
 /* Sections common style for scroll reveal */
 section {
-    padding: 80px 0;
+    padding: 100px 0; /* Увеличенные отступы между секциями */
     position: relative;
     z-index: 1;
     background-color: var(--color-primary-bg);
+    /* Добавляем границу для лучшего разделения, если секция чередуется */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Очень тонкий разделитель */
+}
+
+section:last-of-type {
+    border-bottom: none; /* Убираем границу у последней секции */
 }
 
 section:nth-of-type(even) {
-    background-color: var(--color-secondary-bg); /* Чередование фонов */
+    background-color: var(--color-secondary-bg); /* Чистый белый фон для чередующихся секций */
 }
 
 /* Scroll reveal animations */
@@ -320,14 +342,14 @@ section:nth-of-type(even) {
 .feature-item {
     background-color: var(--color-secondary-bg);
     border-radius: var(--border-radius-soft);
-    padding: 30px;
+    padding: 40px; /* Увеличенный padding */
     text-align: center;
     box-shadow: var(--box-shadow-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Более выраженный подъем */
     box-shadow: var(--box-shadow-medium);
 }
 
@@ -342,12 +364,20 @@ section:nth-of-type(even) {
     font-size: 0.95em;
 }
 
+.feature-icon {
+    width: 70px; /* Чуть крупнее иконки */
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 20px; /* Увеличиваем отступ */
+    color: var(--color-accent-violet); /* Если это SVG иконки */
+}
+
 /* Rules Section */
 .rules-content {
     max-width: 800px;
     margin: 0 auto;
     background-color: var(--color-secondary-bg);
-    padding: 40px;
+    padding: 50px; /* Увеличенный padding */
     border-radius: var(--border-radius-soft);
     box-shadow: var(--box-shadow-light);
 }
@@ -359,25 +389,29 @@ section:nth-of-type(even) {
 
 .rules-content ul li {
     margin-bottom: 10px;
-    padding-left: 25px;
+    padding-left: 30px; /* Больше отступ для маркера */
     position: relative;
     color: var(--color-text-dark);
 }
 
 .rules-content ul li::before {
     content: '•'; /* Маркер списка */
-    color: var(--color-accent-violet);
-    font-size: 1.2em;
+    color: var(--color-accent-pink); /* Маркер розового цвета */
+    font-size: 1.5em; /* Чуть крупнее маркер */
     position: absolute;
     left: 0;
-    top: 0;
+    top: -2px; /* Поправить выравнивание маркера */
 }
 
 .rules-content h3 {
     color: var(--color-accent-violet);
-    margin-top: 30px;
-    margin-bottom: 15px;
+    margin-top: 40px; /* Увеличиваем отступ */
+    margin-bottom: 20px;
     font-weight: 600;
+    letter-spacing: 0.02em;
+}
+.rules-content h3:first-of-type {
+    margin-top: 0; /* Первый заголовок без верхнего отступа */
 }
 
 .popup-trigger {
@@ -389,7 +423,7 @@ section:nth-of-type(even) {
 }
 
 .popup-trigger:hover {
-    color: var(--color-accent-pink);
+    color: var(--color-accent-pink); /* Розовый при ховере */
 }
 
 /* Popup Overlay */
@@ -399,14 +433,14 @@ section:nth-of-type(even) {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5); /* Чуть темнее оверлей */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10000;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.4s ease, visibility 0.4s ease; /* Чуть дольше анимация */
 }
 
 .popup-overlay.active {
@@ -415,18 +449,18 @@ section:nth-of-type(even) {
 }
 
 .popup-content {
-    background-color: rgba(255, 255, 255, 0.8); /* Фон для попапа */
-    backdrop-filter: blur(20px); /* Эффект жидкого стекла для попапа */
-    -webkit-backdrop-filter: blur(20px); /* Для Webkit-браузеров */
-    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.85); /* Более плотный фон для попапа */
+    backdrop-filter: blur(25px); /* Эффект жидкого стекла для попапа */
+    -webkit-backdrop-filter: blur(25px); /* Для Webkit-браузеров */
+    padding: 40px; /* Увеличенный padding */
     border-radius: var(--border-radius-soft);
-    box-shadow: var(--box-shadow-medium);
-    max-width: 450px;
+    box-shadow: var(--box-shadow-medium); /* Более выраженная тень */
+    max-width: 500px; /* Чуть шире */
     width: 90%;
     position: relative;
     transform: scale(0.9);
     opacity: 0;
-    transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease; /* Анимация появления */
+    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease; /* Более плавная и пружинистая анимация появления */
 }
 
 .popup-overlay.active .popup-content {
@@ -440,21 +474,23 @@ section:nth-of-type(even) {
     right: 15px;
     background: none;
     border: none;
-    font-size: 2em;
+    font-size: 2.5em; /* Крупнее кнопка закрытия */
     cursor: pointer;
     color: var(--color-text-light);
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .close-popup:hover {
-    color: var(--color-accent-pink);
+    color: var(--color-accent-violet); /* Темнее фиолетовый при ховере */
+    transform: rotate(90deg); /* Вращение при ховере */
 }
 
 #popup-title {
     color: var(--color-accent-violet);
     margin-top: 0;
     margin-bottom: 15px;
-    font-size: 1.6em;
+    font-size: 1.8em; /* Крупнее заголовок попапа */
+    font-weight: 600;
 }
 
 #popup-description {
@@ -470,9 +506,9 @@ section:nth-of-type(even) {
 .history-block,
 .team-block {
     max-width: 900px;
-    margin: 0 auto 50px auto;
+    margin: 0 auto 80px auto; /* Увеличиваем отступы между блоками */
     background-color: var(--color-secondary-bg);
-    padding: 40px;
+    padding: 50px; /* Увеличенный padding */
     border-radius: var(--border-radius-soft);
     box-shadow: var(--box-shadow-light);
 }
@@ -480,10 +516,16 @@ section:nth-of-type(even) {
 .history-block h3,
 .team-block h3 {
     color: var(--color-accent-violet);
-    margin-top: 0;
-    margin-bottom: 20px;
+    margin-top: 0; /* Убираем верхний отступ у первого заголовка */
+    margin-bottom: 25px; /* Увеличиваем отступ */
     font-weight: 600;
+    letter-spacing: 0.02em;
 }
+/* Переименовываем h3 для владельца чата */
+.team-block h3 {
+    margin-top: 0;
+}
+
 
 .history-block p {
     margin-bottom: 15px;
@@ -491,7 +533,8 @@ section:nth-of-type(even) {
 }
 
 .history-block p strong {
-    color: var(--color-accent-violet);
+    color: var(--color-accent-violet); /* Цвет жирного текста */
+    font-weight: 600; /* Более сильный жирный */
 }
 
 .team-member {
@@ -499,51 +542,48 @@ section:nth-of-type(even) {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    margin-top: 40px; /* Отступ между историей и владельцем */
 }
 
 .member-avatar {
-    width: 120px;
-    height: 120px;
+    width: 150px; /* Крупнее аватарка */
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
-    border: 4px solid var(--color-accent-violet);
-    box-shadow: var(--box-shadow-light);
+    margin-bottom: 25px;
+    border: 5px solid var(--color-accent-violet); /* Толще рамка */
+    box-shadow: var(--box-shadow-medium); /* Более выраженная тень */
 }
 
 .team-member h4 {
-    font-size: 1.8em;
+    font-size: 2.2em; /* Крупнее ник */
     color: var(--color-accent-violet);
-    margin-bottom: 5px;
-}
-
-.team-member h4 a {
-    text-decoration: none;
-    color: inherit;
+    margin-bottom: 8px; /* Увеличиваем отступ */
 }
 
 .team-member .member-role {
-    font-size: 1.1em;
+    font-size: 1.2em; /* Чуть крупнее */
     color: var(--color-text-light);
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-weight: 600;
 }
 
 .member-bio {
-    max-width: 600px;
-    font-size: 0.95em;
+    max-width: 650px;
+    font-size: 1em; /* Чуть крупнее */
     color: var(--color-text-dark);
 }
 
 .member-bio .contact-info {
-    display: block; /* С новой строки */
-    margin-top: 10px;
-    font-size: 0.9em;
+    display: block;
+    margin-top: 15px; /* Увеличенный отступ */
+    font-size: 0.95em;
     color: var(--color-text-light);
 }
 
 .member-bio .contact-info a {
     color: var(--color-accent-pink); /* Отдельный цвет для контакта */
+    text-decoration: underline; /* Подчеркивание */
 }
 
 .member-bio .contact-info a:hover {
@@ -552,82 +592,90 @@ section:nth-of-type(even) {
 
 .moderators-note {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 40px; /* Увеличиваем отступ */
     font-style: italic;
     color: var(--color-text-light);
+    font-size: 1em;
 }
 
 /* Projects Section */
 .project-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Изменен minmax для лучшей адаптации */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
-    justify-content: center; /* Центрирование элементов в сетке */
+    justify-content: center;
+    align-items: stretch; /* Чтобы карточки растягивались по высоте */
 }
 
 .project-item {
     background-color: var(--color-secondary-bg);
     border-radius: var(--border-radius-soft);
-    padding: 25px;
+    padding: 30px; /* Увеличенный padding */
     text-align: center;
     box-shadow: var(--box-shadow-light);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex; /* Flexbox для содержимого карточки */
+    flex-direction: column;
+    justify-content: space-between; /* Распределение контента */
 }
 
 .project-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px); /* Более выраженный подъем */
     box-shadow: var(--box-shadow-medium);
 }
 
 .project-item .project-logo {
-    width: 80px;
-    height: 80px;
+    width: 90px; /* Крупнее лого */
+    height: 90px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 15px;
-    border: 2px solid var(--color-accent-pink);
+    margin-bottom: 20px;
+    border: 3px solid var(--color-accent-pink); /* Толще рамка */
+    box-shadow: var(--box-shadow-light);
 }
 
 .project-item a {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.3em;
+    font-size: 1.4em; /* Крупнее название проекта */
     font-weight: 600;
-    color: var(--color-text-dark);
-    margin-bottom: 5px;
+    color: var(--color-accent-violet); /* Название проекта будет фиолетовым */
+    margin-bottom: 10px; /* Увеличенный отступ */
     display: block;
 }
 
 .project-item a:hover {
-    color: var(--color-accent-violet);
+    color: var(--color-accent-pink);
+    text-decoration: underline;
 }
 
 .project-description {
-    font-size: 0.9em;
+    font-size: 0.95em;
     color: var(--color-text-light);
-    margin-top: 10px;
+    margin-top: auto; /* Прижимает к низу, если flex */
 }
 
 .small-text-hint {
     font-size: 0.8em;
     color: var(--color-text-light);
     display: block;
-    margin-top: 5px;
+    margin-top: 8px;
+    font-style: italic; /* Курсив для hint */
 }
 
 .small-text-hint a {
-    color: var(--color-text-light);
+    color: var(--color-accent-pink); /* Яркий розовый для FlearyBot */
     text-decoration: underline;
 }
 
 .small-text-hint a:hover {
-    color: var(--color-accent-pink);
+    color: var(--color-accent-violet);
 }
 
 /* Footer */
 .footer {
-    background-color: var(--color-text-dark);
+    background-color: var(--color-text-dark); /* Темный фон футера */
     color: var(--color-secondary-bg);
-    padding: 30px 0;
+    padding: 40px 0; /* Увеличиваем padding */
     text-align: center;
     font-size: 0.9em;
 }
@@ -637,7 +685,7 @@ section:nth-of-type(even) {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px; /* Отступ между элементами */
+    gap: 30px; /* Увеличиваем отступ */
 }
 
 .footer-content p {
@@ -648,37 +696,45 @@ section:nth-of-type(even) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-secondary-bg);
-    transition: color 0.3s ease;
+    color: var(--color-secondary-bg); /* Иконка белая */
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .telegram-icon-link:hover {
-    color: var(--color-accent-pink);
+    color: var(--color-accent-pink); /* При ховере - ярко-розовая */
+    transform: scale(1.1) rotate(5deg); /* Небольшая анимация */
 }
 
 .telegram-icon-link svg {
-    width: 28px;
-    height: 28px;
+    width: 32px; /* Чуть крупнее иконка */
+    height: 32px;
 }
 
 /* Mobile styles */
 @media (max-width: 768px) {
     body {
-        padding-top: var(--header-height-mobile); /* Отступ для мобильного хедера */
+        padding-top: var(--header-height-mobile);
     }
-    h1 { font-size: 2.8em; }
+    h1 { font-size: 2.5em; }
     h2 { font-size: 2em; }
     h3 { font-size: 1.5em; }
     .header {
         height: var(--header-height-mobile);
     }
     .logo {
-        font-size: 1.4em; /* Уменьшаем размер лого на мобильных */
+        font-size: 1.2em; /* Уменьшаем размер лого на мобильных */
+    }
+    .logo .chat-avatar {
+        width: 35px;
+        height: 35px;
     }
     .hero-section {
-        padding-top: 80px; /* Скорректирован padding для мобильных */
+        padding-top: 80px;
         min-height: calc(100vh - var(--header-height-mobile));
     }
+    .hero-title { font-size: 3em; }
+    .hero-slogan { font-size: 1.5em; }
+
     .nav {
         position: fixed;
         top: 0;
@@ -704,14 +760,15 @@ section:nth-of-type(even) {
         flex-direction: column;
         text-align: center;
         width: 100%;
+        margin-bottom: 30px; /* Отступ от кнопки CTA */
     }
 
     .nav-list li {
-        margin: 20px 0;
+        margin: 15px 0; /* Меньше отступы на мобильных */
     }
 
     .nav-link {
-        font-size: 1.8em;
+        font-size: 1.6em; /* Чуть меньше размер ссылок */
         font-weight: 600;
         color: var(--color-accent-violet);
     }
@@ -723,9 +780,9 @@ section:nth-of-type(even) {
 
     .nav-cta-header {
         display: block; /* Показать кнопку в мобильном меню */
-        margin-top: 30px;
+        margin-top: 0; /* Убираем лишний margin-top */
         margin-left: 0;
-        font-size: 1.1em; /* Уменьшаем размер кнопки в мобильном меню */
+        font-size: 1em; /* Уменьшаем размер кнопки в мобильном меню */
         padding: 12px 30px;
     }
 
@@ -749,8 +806,9 @@ section:nth-of-type(even) {
     }
     .footer-content {
         flex-direction: column;
+        gap: 15px;
     }
     .footer-content p {
-        margin-bottom: 10px;
+        margin-bottom: 0;
     }
 }
