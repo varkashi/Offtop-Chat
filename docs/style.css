@@ -4,18 +4,24 @@
     --color-text-dark: #333333; /* Темный текст */
     --color-text-light: #666666; /* Светлый текст */
 
-    --color-accent-violet: #8A2BE2; /* Насыщенный Фиолетовый (Blue Violet) */
-    --color-accent-violet-light: #A562FF; /* Более светлый фиолетовый */
+    --color-accent-violet: #6A0AD2; /* Насыщенный Фиолетовый (чуть темнее и насыщеннее) */
+    --color-accent-violet-dark: #4A009C; /* Темнее фиолетовый для ховера */
+    --color-accent-violet-light: #A562FF; /* Более светлый фиолетовый для градиента */
     --color-accent-pink: #FF69B4; /* Яркий Розовый (Hot Pink) */
     --color-accent-pink-light: #FF9ACB; /* Более светлый розовый */
 
-    --header-height: 80px; /* Высота хедера */
+    --header-height-desktop: 80px; /* Высота хедера на ПК */
+    --header-height-mobile: 60px; /* Высота хедера на мобильных */
     --border-radius-soft: 12px; /* Закругленные углы */
     --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08); /* Легкая тень */
     --box-shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.15); /* Средняя тень */
 }
 
 /* Общие стили */
+html {
+    scroll-behavior: smooth; /* Плавный скролл по якорям */
+}
+
 body {
     margin: 0;
     font-family: 'Open Sans', sans-serif;
@@ -23,6 +29,7 @@ body {
     line-height: 1.6;
     background-color: var(--color-primary-bg);
     overflow-x: hidden; /* Предотвращаем горизонтальный скролл при анимациях */
+    padding-top: var(--header-height-desktop); /* Отступ для фиксированного хедера */
 }
 
 .container {
@@ -66,7 +73,7 @@ a:hover {
 }
 
 .cta-button:hover {
-    background-color: var(--color-accent-pink);
+    background-color: var(--color-accent-violet-dark); /* Темнее фиолетовый при наведении */
     transform: translateY(-2px);
     box-shadow: var(--box-shadow-medium);
 }
@@ -76,7 +83,29 @@ a:hover {
     margin-bottom: 60px;
     font-weight: 700;
     color: var(--color-accent-violet);
+    font-size: 2.8em; /* Чуть крупнее заголовки секций */
 }
+
+/* Custom Scrollbar (WebKit) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-primary-bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent-violet);
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-pink);
+}
+
 
 /* Header */
 .header {
@@ -85,11 +114,11 @@ a:hover {
     top: 0;
     left: 0;
     z-index: 1000;
-    height: var(--header-height);
+    height: var(--header-height-desktop);
     display: flex;
     align-items: center;
-    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
     background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон по умолчанию */
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header.scrolled {
@@ -120,7 +149,12 @@ a:hover {
     height: 40px;
     border-radius: 50%;
     margin-right: 10px;
-    object-fit: cover; /* Для изображений, чтобы они не растягивались */
+    object-fit: cover;
+}
+
+.nav {
+    display: flex; /* По умолчанию flex для ПК */
+    align-items: center;
 }
 
 .nav-list {
@@ -128,6 +162,7 @@ a:hover {
     margin: 0;
     padding: 0;
     display: flex;
+    align-items: center; /* Выравнивание элементов списка */
 }
 
 .nav-list li {
@@ -157,15 +192,10 @@ a:hover {
     width: 100%;
 }
 
-.nav-cta {
-    margin-left: 30px;
-    animation: pulse 2s infinite; /* Пульсация кнопки */
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0.7); }
-    70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(138, 43, 226, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(138, 43, 226, 0); }
+.nav-cta-header {
+    margin-left: 30px; /* Отступ от навигации */
+    /* Пульсация убрана для хедера на ПК */
+    /* animation: none; */
 }
 
 .hamburger {
@@ -176,10 +206,9 @@ a:hover {
     padding: 0;
     width: 30px;
     height: 20px;
-    display: flex;
     flex-direction: column;
     justify-content: space-between;
-    z-index: 1100; /* Выше nav-list при открытии */
+    z-index: 1100;
 }
 
 .hamburger span {
@@ -203,18 +232,27 @@ a:hover {
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--color-primary-bg) 0%, var(--color-accent-violet-light) 100%); /* Мягкий фиолетовый градиент */
+    background: linear-gradient(135deg, var(--color-accent-violet-light) 0%, var(--color-primary-bg) 100%); /* Плавный переход от фиолетового к светло-серому */
     text-align: center;
     padding: 120px 0 80px;
-    min-height: calc(100vh - var(--header-height)); /* Занимает почти всю высоту экрана */
+    min-height: calc(100vh - var(--header-height-desktop));
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    position: relative; /* Для анимаций */
-    top: var(--header-height); /* Смещение, чтобы хедер не перекрывал */
-    margin-bottom: var(--header-height); /* Компенсация смещения */
+    position: relative;
+    /* margin-bottom: var(--header-height-desktop); /* Убрано, т.к. padding-top на body */
 }
+
+.hero-title, .hero-slogan, .hero-cta, .hero-description {
+    opacity: 0; transform: translateY(20px); /* Начальное состояние для анимации */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.hero-title.section-visible { opacity: 1; transform: translateY(0); }
+.hero-slogan.section-visible { opacity: 1; transform: translateY(0); }
+.hero-cta.section-visible { opacity: 1; transform: translateY(0); }
+.hero-description.section-visible { opacity: 1; transform: translateY(0); }
 
 
 .hero-title {
@@ -222,7 +260,6 @@ a:hover {
     color: var(--color-accent-violet);
     margin-bottom: 10px;
     font-weight: 700;
-    opacity: 0; transform: translateY(20px); /* Анимация */
 }
 
 .hero-slogan {
@@ -230,29 +267,30 @@ a:hover {
     color: var(--color-text-dark);
     margin-bottom: 40px;
     font-weight: 500;
-    opacity: 0; transform: translateY(20px); /* Анимация */
-    transition-delay: 0.1s;
 }
 
 .hero-cta {
     margin-bottom: 40px;
-    opacity: 0; transform: translateY(20px); /* Анимация */
-    transition-delay: 0.2s;
+    animation: pulse 2s infinite; /* Пульсация кнопки только здесь */
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 10, 210, 0.7); } /* Используем темнее фиолетовый */
+    70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(106, 10, 210, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(106, 10, 210, 0); }
 }
 
 .hero-description {
     max-width: 800px;
     font-size: 1.1em;
     color: var(--color-text-light);
-    opacity: 0; transform: translateY(20px); /* Анимация */
-    transition-delay: 0.3s;
 }
 
 /* Sections common style for scroll reveal */
 section {
     padding: 80px 0;
     position: relative;
-    z-index: 1; /* Чтобы не перекрывалось header'ом */
+    z-index: 1;
     background-color: var(--color-primary-bg);
 }
 
@@ -302,13 +340,6 @@ section:nth-of-type(even) {
 .feature-item p {
     color: var(--color-text-light);
     font-size: 0.95em;
-}
-
-.feature-icon {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-bottom: 15px;
 }
 
 /* Rules Section */
@@ -498,10 +529,25 @@ section:nth-of-type(even) {
     font-weight: 600;
 }
 
-.team-member .member-bio {
+.member-bio {
     max-width: 600px;
     font-size: 0.95em;
     color: var(--color-text-dark);
+}
+
+.member-bio .contact-info {
+    display: block; /* С новой строки */
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: var(--color-text-light);
+}
+
+.member-bio .contact-info a {
+    color: var(--color-accent-pink); /* Отдельный цвет для контакта */
+}
+
+.member-bio .contact-info a:hover {
+    color: var(--color-accent-violet);
 }
 
 .moderators-note {
@@ -514,8 +560,9 @@ section:nth-of-type(even) {
 /* Projects Section */
 .project-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Изменен minmax для лучшей адаптации */
     gap: 30px;
+    justify-content: center; /* Центрирование элементов в сетке */
 }
 
 .project-item {
@@ -547,7 +594,7 @@ section:nth-of-type(even) {
     font-weight: 600;
     color: var(--color-text-dark);
     margin-bottom: 5px;
-    display: block; /* Чтобы ссылка занимала всю ширину */
+    display: block;
 }
 
 .project-item a:hover {
@@ -563,12 +610,12 @@ section:nth-of-type(even) {
 .small-text-hint {
     font-size: 0.8em;
     color: var(--color-text-light);
-    display: block; /* Отдельная строка */
+    display: block;
     margin-top: 5px;
 }
 
 .small-text-hint a {
-    color: var(--color-text-light); /* Сохраняем цвет, чтобы не сильно выделялось */
+    color: var(--color-text-light);
     text-decoration: underline;
 }
 
@@ -589,16 +636,16 @@ section:nth-of-type(even) {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap; /* Для мобильных */
+    flex-wrap: wrap;
+    gap: 20px; /* Отступ между элементами */
 }
 
 .footer-content p {
     margin: 0;
-    margin-right: 20px;
 }
 
 .telegram-icon-link {
-    display: inline-flex; /* Для SVG */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     color: var(--color-secondary-bg);
@@ -616,16 +663,21 @@ section:nth-of-type(even) {
 
 /* Mobile styles */
 @media (max-width: 768px) {
+    body {
+        padding-top: var(--header-height-mobile); /* Отступ для мобильного хедера */
+    }
     h1 { font-size: 2.8em; }
     h2 { font-size: 2em; }
     h3 { font-size: 1.5em; }
     .header {
-        height: 60px;
+        height: var(--header-height-mobile);
+    }
+    .logo {
+        font-size: 1.4em; /* Уменьшаем размер лого на мобильных */
     }
     .hero-section {
-        padding-top: 100px;
-        min-height: calc(100vh - 60px);
-        margin-bottom: 60px;
+        padding-top: 80px; /* Скорректирован padding для мобильных */
+        min-height: calc(100vh - var(--header-height-mobile));
     }
     .nav {
         position: fixed;
@@ -633,7 +685,7 @@ section:nth-of-type(even) {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: rgba(255, 255, 255, 0.98); /* Почти непрозрачный белый фон */
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         flex-direction: column;
@@ -665,15 +717,16 @@ section:nth-of-type(even) {
     }
 
     .nav-link::after {
-        background-color: var(--color-accent-pink); /* чтобы лучше видно было на мобильном */
+        background-color: var(--color-accent-pink);
         height: 3px;
     }
 
-    .nav-cta {
+    .nav-cta-header {
+        display: block; /* Показать кнопку в мобильном меню */
         margin-top: 30px;
         margin-left: 0;
-        font-size: 1.3em;
-        padding: 15px 40px;
+        font-size: 1.1em; /* Уменьшаем размер кнопки в мобильном меню */
+        padding: 12px 30px;
     }
 
     .hamburger {
@@ -698,7 +751,6 @@ section:nth-of-type(even) {
         flex-direction: column;
     }
     .footer-content p {
-        margin-right: 0;
         margin-bottom: 10px;
     }
 }
