@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
-    const navLinks = document.querySelectorAll('.nav-link, .nav-cta-header'); // Все ссылки в меню, включая CTA в хедере
+    // Все ссылки в меню, включая CTA в хедере (для закрытия меню по клику)
+    const navLinks = document.querySelectorAll('.nav-list a, .nav-cta-header'); 
 
     // Sticky Header
     window.addEventListener('scroll', () => {
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Close menu when a link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
+            // Проверяем, активно ли мобильное меню
             if (nav.classList.contains('active')) {
                 hamburger.classList.remove('active');
                 nav.classList.remove('active');
@@ -65,24 +67,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 popupTitle.textContent = definitions[term].title;
                 popupDescription.textContent = definitions[term].description;
                 popupOverlay.classList.add('active');
+                document.body.classList.add('no-scroll'); // Блокировка прокрутки фона
             }
         });
     });
 
     closePopupButton.addEventListener('click', () => {
         popupOverlay.classList.remove('active');
+        document.body.classList.remove('no-scroll');
     });
 
     popupOverlay.addEventListener('click', (e) => {
-        if (e.target === popupOverlay) {
+        if (e.target === popupOverlay) { // Закрыть попап при клике вне его содержимого
             popupOverlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
         }
     });
 
     // ----------------------------------------------------
     // Анимации при прокрутке (Scroll Reveal Animations)
     // ----------------------------------------------------
-    const sections = document.querySelectorAll('section:not(.hero-section), .hero-title, .hero-slogan, .hero-cta, .hero-description');
+    // Выбираем все секции, кроме hero-section, а также отдельные элементы hero-section
+    const sectionsToAnimate = document.querySelectorAll('section:not(.hero-section)');
+    const heroElementsToAnimate = document.querySelectorAll('.hero-title, .hero-slogan, .hero-cta, .hero-description');
 
     const revealSection = (entries, observer) => {
         entries.forEach(entry => {
@@ -98,20 +105,16 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.15 // Появление, когда 15% элемента видно
     });
 
-    sections.forEach(section => {
-        // Убедимся, что hero-секция не получает section-hidden, она анимируется отдельно
-        if (!section.classList.contains('hero-title') &&
-            !section.classList.contains('hero-slogan') &&
-            !section.classList.contains('hero-cta') &&
-            !section.classList.contains('hero-description')) {
-            section.classList.add('section-hidden');
-        }
+    // Наблюдаем за всеми секциями, кроме Hero, чтобы они появлялись при прокрутке
+    sectionsToAnimate.forEach(section => {
+        section.classList.add('section-hidden'); // Убедимся, что они изначально скрыты
         sectionObserver.observe(section);
     });
 
-    // Initial animation for hero section elements on load
-    const heroElements = document.querySelectorAll('.hero-title, .hero-slogan, .hero-cta, .hero-description');
-    heroElements.forEach((el, index) => {
+    // Анимация элементов Hero-секции при загрузке страницы (без Intersection Observer для них)
+    heroElementsToAnimate.forEach((el, index) => {
+        // Убедимся, что hero-элементы изначально скрыты (для CSS-анимации)
+        el.classList.add('section-hidden'); 
         setTimeout(() => {
             el.classList.add('section-visible');
         }, 150 * index); // Staggered animation for hero elements
