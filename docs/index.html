@@ -29,8 +29,9 @@
             </nav>
             <div class="header-controls">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.166 7.758a.75.75 0 00-1.06-1.061L3.515 8.29a.75.75 0 001.06 1.06l1.591-1.59z"/></svg>
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-3.864 2.09-7.223 5.218-9.006a.75.75 0 01.819.162z" clip-rule="evenodd" /></svg>
+                    <div class="toggle-track">
+                        <div class="toggle-thumb"></div>
+                    </div>
                 </button>
                 <button class="hamburger" aria-label="Открыть меню">
                     <span></span>
@@ -56,7 +57,9 @@
                     </a>
                 </div>
                 <div class="hero-content-right">
-                    <div class="hero-portal"></div>
+                    <div class="hero-portal">
+                        <img src="images/chat-avatar.png" alt="Аватар Offtop Chat в портале" class="hero-portal-avatar">
+                    </div>
                 </div>
             </div>
         </section>
@@ -77,29 +80,35 @@
         <section id="rules" class="rules-section section-hidden">
             <div class="container">
                 <h2 class="section-title">Правила и Рекомендации</h2>
-                <div class="rules-tabs-container">
-                    <div class="tabs-nav">
-                        <button class="tab-link active" data-tab="tab-1">Запрещено</button>
-                        <button class="tab-link" data-tab="tab-2">Поведение</button>
-                        <button class="tab-link" data-tab="tab-3">Система наказаний</button>
+                <div class="rules-container">
+                    <!-- На мобильных это будет аккордеоном -->
+                    <div class="rules-accordion-item">
+                        <button class="rules-accordion-header">Запрещено</button>
+                        <div class="rules-accordion-content">
+                            <ul>
+                                <li>18+ контент (а также шокирующие кадры);</li>
+                                <li>Любое упоминание политики;</li>
+                                <li>Действия, нарушающие законодательство РФ;</li>
+                                <li>Несогласованная реклама;</li>
+                                <li>Дискриминация;</li>
+                                <li>Спам;</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div id="tab-1" class="tab-content active">
-                        <ul>
-                            <li>18+ контент (а также шокирующие кадры);</li>
-                            <li>Любое упоминание политики;</li>
-                            <li>Действия, нарушающие законодательство РФ;</li>
-                            <li>Несогласованная реклама;</li>
-                            <li>Дискриминация;</li>
-                            <li>Спам;</li>
-                        </ul>
+                    <div class="rules-accordion-item">
+                        <button class="rules-accordion-header">Поведение</button>
+                        <div class="rules-accordion-content">
+                            <p>Конфликты между участниками не запрещены, однако по требованию модератора каждая из сторон обязана их прекратить.</p>
+                            <p>Использование нецензурной лексики (мата) разрешено, но при этом не приветствуется токсичное поведение и проявления постоянной агрессии.</p>
+                        </div>
                     </div>
-                    <div id="tab-2" class="tab-content">
-                        <p>Конфликты между участниками не запрещены, однако по требованию модератора каждая из сторон обязана их прекратить.</p>
-                        <p>Использование нецензурной лексики (мата) разрешено, но при этом не приветствуется токсичное поведение и проявления постоянной агрессии.</p>
-                    </div>
-                    <div id="tab-3" class="tab-content">
-                        <p>В чате действует система предупреждений (<span class="popup-trigger" data-term="варн">варнов</span>): если вы накопили 5 <span class="popup-trigger" data-term="варн">варнов</span>, это приводит к получению <span class="popup-trigger" data-term="бан">бана</span>.</p>
-                        <p>За некоторые нарушения модератор вправе выдать <span class="popup-trigger" data-term="бан">бан</span> или <span class="popup-trigger" data-term="мут">мут</span> немедленно.</p>
+                    <div class="rules-accordion-item">
+                        <button class="rules-accordion-header">Система наказаний</button>
+                        <div class="rules-accordion-content">
+                             <p>В чате действует система предупреждений (<span class="popup-trigger" data-term="варн">варнов</span>): если вы накопили 5 <span class="popup-trigger" data-term="варн">варнов</span>, это приводит к получению <span class="popup-trigger" data-term="бан">бана</span>.</p>
+                             <p>За некоторые нарушения модератор вправе выдать <span class="popup-trigger" data-term="бан">бан</span> или <span class="popup-trigger" data-term="мут">мут</span> немедленно.</p>
+                             <p>По любым вопросам (сотрудничество, разбан) писать: <a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a>.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,7 +129,10 @@
                             <img src="images/owner-avatar.png" alt="Аватарка владельца" class="member-avatar">
                             <h4>varkashi</h4>
                             <p class="member-role">Владелец, основатель Offtop Chat.</p>
-                            <p class="member-bio">Владелец канала <a href="https://t.me/ClownsEasyAPK" target="_blank" rel="noopener noreferrer">@ClownsEasyAPK</a>, бывший модератор <a href="https://t.me/ChatEasyAPK" target="_blank" rel="noopener noreferrer">@ChatEasyAPK</a>, и участник других проектов в Telegram. <span class="contact-info">Telegram: <a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a></span></p>
+                             <a href="https://t.me/downebani" class="member-contact-button" target="_blank" rel="noopener noreferrer">
+                                <svg viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M446.7 98.6l-67.6 318.8c-1.4 6.2-8.7 10.7-15.3 8.7L220.6 345.2l-77.5 75.3c-10.4 10.4-18.7 1.1-22.3-11.6L2.3 278.4c-5.9-25.2 12.5-45.7 34.5-54.7l371.7-143.9c22-8.9 40 6.6 34.5 28.6z"/></svg>
+                                Связаться в Telegram
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -134,6 +146,8 @@
                     <div class="projects-carousel">
                         <!-- Карточки проектов будут добавлены сюда -->
                     </div>
+                    <button class="projects-arrow projects-prev" aria-label="Предыдущий проект">&lt;</button>
+                    <button class="projects-arrow projects-next" aria-label="Следующий проект">&gt;</button>
                 </div>
             </div>
         </section>
@@ -151,10 +165,10 @@
 
     <footer class="footer">
         <div class="container footer-content">
-            <p>&copy; 2025 Offtop Chat. Все права защищены.</p>
-            <a href="https://t.me/OfftopEasyAPK" target="_blank" rel="noopener noreferrer" class="telegram-icon-link" aria-label="Присоединиться к Offtop Chat в Telegram">
+             <a href="https://t.me/OfftopEasyAPK" target="_blank" rel="noopener noreferrer" class="telegram-icon-link" aria-label="Присоединиться к Offtop Chat в Telegram">
                 <svg viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M446.7 98.6l-67.6 318.8c-1.4 6.2-8.7 10.7-15.3 8.7L220.6 345.2l-77.5 75.3c-10.4 10.4-18.7 1.1-22.3-11.6L2.3 278.4c-5.9-25.2 12.5-45.7 34.5-54.7l371.7-143.9c22-8.9 40 6.6 34.5 28.6z"/></svg>
             </a>
+            <p>&copy; 2025 Offtop Chat. Все права защищены.</p>
         </div>
     </footer>
 
