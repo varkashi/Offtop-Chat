@@ -27,81 +27,80 @@
                     Присоединиться к чату
                 </a>
             </nav>
-            <button class="hamburger" aria-label="Открыть меню">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="header-controls">
+                <button id="theme-toggle" class="theme-toggle" aria-label="Переключить тему">
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.166 7.758a.75.75 0 00-1.06-1.061L3.515 8.29a.75.75 0 001.06 1.06l1.591-1.59z"/></svg>
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-3.864 2.09-7.223 5.218-9.006a.75.75 0 01.819.162z" clip-rule="evenodd" /></svg>
+                </button>
+                <button class="hamburger" aria-label="Открыть меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="hero-section">
-            <div class="container">
-                <h1 class="hero-title">Offtop Chat</h1>
-                <p class="hero-slogan">Откройте для себя мир общения без границ.</p>
-                <a href="https://t.me/OfftopEasyAPK" class="cta-button hero-cta" target="_blank" rel="noopener noreferrer">
-                    Присоединиться к чату
-                </a>
-                <p class="hero-description">
-                    Добро пожаловать в Offtop Chat – место, где нет запретных тем и всегда найдется повод для смеха!
-                    Общайтесь, делитесь идеями, находите новых друзей и наслаждайтесь непринужденной атмосферой.
-                    Здесь царит дружелюбие, юмор и свобода слова для всех, кто молод душой и ищет единомышленников.
-                </p>
+            <div class="hero-background"></div>
+            <div class="container hero-container">
+                <div class="hero-content-left">
+                    <h1 class="hero-title">Offtop Chat</h1>
+                    <p class="hero-slogan">Откройте для себя мир общения без границ.</p>
+                    <p class="hero-description">
+                        Добро пожаловать в Offtop Chat – место, где нет запретных тем и всегда найдется повод для смеха! Общайтесь, делитесь идеями и находите новых друзей.
+                    </p>
+                    <a href="https://t.me/OfftopEasyAPK" class="cta-button hero-cta" target="_blank" rel="noopener noreferrer">
+                        Присоединиться к чату
+                    </a>
+                </div>
+                <div class="hero-content-right">
+                    <div class="hero-portal"></div>
+                </div>
             </div>
         </section>
 
         <section id="about-chat" class="features-section section-hidden">
             <div class="container">
                 <h2 class="section-title">Почему именно Offtop Chat?</h2>
-                <div class="feature-grid">
-                    <div class="feature-item">
-                        <img src="images/icon-freedom.png" alt="Иконка свободы общения" class="feature-icon">
-                        <h3>Свобода общения</h3>
-                        <p>Обсуждайте любые темы, делитесь мыслями и мнениями без ограничений. Здесь нет запретов для вашей фантазии!</p>
+                <div class="features-carousel">
+                    <div class="carousel-wrapper">
+                        <!-- Карточки будут добавлены сюда с помощью JS -->
                     </div>
-                    <div class="feature-item">
-                        <img src="images/icon-community.png" alt="Иконка дружелюбного комьюнити" class="feature-icon">
-                        <h3>Дружелюбное комьюнити</h3>
-                        <p>Находите единомышленников и заводите новых друзей. Наше сообщество всегда радо новым лицам и открыто к общению.</p>
-                    </div>
-                    <div class="feature-item">
-                        <img src="images/icon-activity.png" alt="Иконка активного общения" class="feature-icon">
-                        <h3>Активное общение</h3>
-                        <p>Чат всегда живой и наполнен интересными разговорами. Вы никогда не заскучаете – диалоги кипят круглосуточно!</p>
-                    </div>
+                    <button class="carousel-arrow prev" aria-label="Предыдущий слайд">&lt;</button>
+                    <button class="carousel-arrow next" aria-label="Следующий слайд">&gt;</button>
                 </div>
             </div>
         </section>
 
         <section id="rules" class="rules-section section-hidden">
             <div class="container">
-                <h2 class="section-title">Правила и Рекомендации Offtop Chat</h2>
-                <div class="rules-content">
-                    <h3>Запрещено:</h3>
-                    <ul>
-                        <li>18+ контент (а также шокирующие кадры);</li>
-                        <li>Любое упоминание политики;</li>
-                        <li>Действия, нарушающие законодательство РФ;</li>
-                        <li>Несогласованная реклама;</li>
-                        <li>Дискриминация;</li>
-                        <li>Спам;</li>
-                    </ul>
-
-                    <h3>О поведении в чате:</h3>
-                    <p>
-                        Конфликты между участниками не запрещены, однако по требованию модератора каждая из сторон обязана их прекратить.
-                        Использование нецензурной лексики (мата) разрешено, но при этом не приветствуется токсичное поведение и проявления постоянной агрессии.
-                    </p>
-
-                    <h3>Система наказаний:</h3>
-                    <p>
-                        В чате действует система предупреждений (<span class="popup-trigger" data-term="варн">варнов</span>): если вы накопили 5 <span class="popup-trigger" data-term="варн">варнов</span>, это приводит к получению <span class="popup-trigger" data-term="бан">бана</span>.
-                        За некоторые нарушения модератор вправе выдать <span class="popup-trigger" data-term="бан">бан</span> или <span class="popup-trigger" data-term="мут">мут</span> немедленно.
-                    </p>
-
-                    <h3>Контакты:</h3>
-                    <p>По любым вопросам (сотрудничество, разбан) писать: <a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a>.</p>
+                <h2 class="section-title">Правила и Рекомендации</h2>
+                <div class="rules-tabs-container">
+                    <div class="tabs-nav">
+                        <button class="tab-link active" data-tab="tab-1">Запрещено</button>
+                        <button class="tab-link" data-tab="tab-2">Поведение</button>
+                        <button class="tab-link" data-tab="tab-3">Система наказаний</button>
+                    </div>
+                    <div id="tab-1" class="tab-content active">
+                        <ul>
+                            <li>18+ контент (а также шокирующие кадры);</li>
+                            <li>Любое упоминание политики;</li>
+                            <li>Действия, нарушающие законодательство РФ;</li>
+                            <li>Несогласованная реклама;</li>
+                            <li>Дискриминация;</li>
+                            <li>Спам;</li>
+                        </ul>
+                    </div>
+                    <div id="tab-2" class="tab-content">
+                        <p>Конфликты между участниками не запрещены, однако по требованию модератора каждая из сторон обязана их прекратить.</p>
+                        <p>Использование нецензурной лексики (мата) разрешено, но при этом не приветствуется токсичное поведение и проявления постоянной агрессии.</p>
+                    </div>
+                    <div id="tab-3" class="tab-content">
+                        <p>В чате действует система предупреждений (<span class="popup-trigger" data-term="варн">варнов</span>): если вы накопили 5 <span class="popup-trigger" data-term="варн">варнов</span>, это приводит к получению <span class="popup-trigger" data-term="бан">бана</span>.</p>
+                        <p>За некоторые нарушения модератор вправе выдать <span class="popup-trigger" data-term="бан">бан</span> или <span class="popup-trigger" data-term="мут">мут</span> немедленно.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -109,28 +108,21 @@
         <section id="about-us" class="about-us-section section-hidden">
             <div class="container">
                 <h2 class="section-title">О нас</h2>
-
-                <div class="history-block">
-                    <h3>История Offtop Chat</h3>
-                    <p>
-                        История Offtop Chat началась **24 июля 2024 года**, когда был основан наш нынешний чат. Однако ему предшествовала еще одна попытка создать подобное пространство, которая, к сожалению, со временем была заброшена. Изначально Offtop Chat был создан для того, чтобы участники чата <a href="https://t.me/ChatEasyAPK" target="_blank" rel="noopener noreferrer">@ChatEasyAPK</a> получили возможность свободно общаться на любые темы, не опасаясь наказаний за оффтоп.
-                    </p>
-                    <p>
-                        Со временем, благодаря нашему активному и дружелюбному сообществу, чат вырос и преобразился, став именно таким, каким вы видите его сегодня – местом для безграничного общения, смеха и поиска единомышленников.
-                    </p>
-                </div>
-
-                <div class="team-block">
-                    <h3>Владелец чата</h3>
-                    <div class="team-member">
-                        <img src="images/owner-avatar.png" alt="Аватарка владельца" class="member-avatar">
-                        <h4>varkashi</h4>
-                        <p class="member-role">Владелец, основатель Offtop Chat.</p>
-                        <p class="member-bio">Владелец канала <a href="https://t.me/ClownsEasyAPK" target="_blank" rel="noopener noreferrer">@ClownsEasyAPK</a>, бывший модератор <a href="https://t.me/ChatEasyAPK" target="_blank" rel="noopener noreferrer">@ChatEasyAPK</a>, и участник других проектов в Telegram. <span class="contact-info">Telegram: <a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a></span></p>
+                <div class="about-us-panel">
+                    <div class="history-block">
+                        <h3>История Offtop Chat</h3>
+                        <p>История Offtop Chat началась <strong>24 июля 2024 года</strong>, когда был основан наш нынешний чат. Изначально он был создан для того, чтобы участники чата <a href="https://t.me/ChatEasyAPK" target="_blank" rel="noopener noreferrer">@ChatEasyAPK</a> получили возможность свободно общаться на любые темы, не опасаясь наказаний за оффтоп.</p>
+                        <p>Со временем, благодаря нашему активному и дружелюбному сообществу, чат вырос и преобразился, став именно таким, каким вы видите его сегодня – местом для безграничного общения, смеха и поиска единомышленников.</p>
                     </div>
-                    <p class="moderators-note">
-                        Порядок и дружелюбную атмосферу в чате также поддерживает команда преданных модераторов.
-                    </p>
+                    <div class="team-block">
+                        <h3>Владелец чата</h3>
+                        <div class="team-member">
+                            <img src="images/owner-avatar.png" alt="Аватарка владельца" class="member-avatar">
+                            <h4>varkashi</h4>
+                            <p class="member-role">Владелец, основатель Offtop Chat.</p>
+                            <p class="member-bio">Владелец канала <a href="https://t.me/ClownsEasyAPK" target="_blank" rel="noopener noreferrer">@ClownsEasyAPK</a>, бывший модератор <a href="https://t.me/ChatEasyAPK" target="_blank" rel="noopener noreferrer">@ChatEasyAPK</a>, и участник других проектов в Telegram. <span class="contact-info">Telegram: <a href="https://t.me/downebani" target="_blank" rel="noopener noreferrer">@downebani</a></span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -138,31 +130,9 @@
         <section id="projects" class="projects-section section-hidden">
             <div class="container">
                 <h2 class="section-title">Связанные проекты</h2>
-                <div class="project-list">
-                    <div class="project-item">
-                        <img src="images/easyapk-logo.png" alt="Логотип EasyAPK" class="project-logo">
-                        <a href="https://t.me/EasyAPK" target="_blank" rel="noopener noreferrer">EasyAPK</a>
-                        <p class="project-description">Игры и программы на Android.</p>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/clowns-easyapk-logo.png" alt="Логотип Клоуны EasyAPK" class="project-logo">
-                        <a href="https://t.me/clownseasyapk" target="_blank" rel="noopener noreferrer">Клоуны EasyAPK</a>
-                        <p class="project-description">Сборник смешных переписок в EasyAPK.</p>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/agata-bot-logo.png" alt="Логотип Чат-бот Агата" class="project-logo">
-                        <a href="http://t.me/agata_offtop_bot" class="agata-link" target="_blank" rel="noopener noreferrer">Чат-бот Агата</a>
-                        <p class="project-description">ИИ-бот, созданный специально для Offtop Chat. <span class="small-text-hint">Создан в конструкторе ИИ-ботов <a href="https://t.me/FlearyBot" target="_blank" rel="noopener noreferrer">@FlearyBot</a>.</span></p>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/mguys-logo.png" alt="Логотип MGuys" class="project-logo">
-                        <a href="https://t.me/meaguys" target="_blank" rel="noopener noreferrer">MGuys</a>
-                        <p class="project-description">Канал модераторов EasyAPK.</p>
-                    </div>
-                    <div class="project-item">
-                        <img src="images/varkashis-logo.png" alt="Логотип varkashi's" class="project-logo">
-                        <a href="https://t.me/pidarebuchi" target="_blank" rel="noopener noreferrer">varkashi's</a>
-                        <p class="project-description">Канал основателя Offtop Chat.</p>
+                <div class="projects-carousel-container">
+                    <div class="projects-carousel">
+                        <!-- Карточки проектов будут добавлены сюда -->
                     </div>
                 </div>
             </div>
@@ -183,8 +153,7 @@
         <div class="container footer-content">
             <p>&copy; 2025 Offtop Chat. Все права защищены.</p>
             <a href="https://t.me/OfftopEasyAPK" target="_blank" rel="noopener noreferrer" class="telegram-icon-link" aria-label="Присоединиться к Offtop Chat в Telegram">
-                <!-- Правильный SVG-логотип Telegram (бумажный самолетик) -->
-                <svg viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M446.7 98.6l-67.6 318.8c-1.4 6.2-8.7 10.7-15.3 8.7L220.6 345.2l-77.5 75.3c-10.4 10.4-18.7 1.1-22.3-11.6L2.3 278.4c-5.9-25.2 12.5-45.7 34.5-54.7l371.7-143.9c22-8.9 40 6.6 34.5 28.6z"/></svg>
+                <svg viewBox="0 0 448 512" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M446.7 98.6l-67.6 318.8c-1.4 6.2-8.7 10.7-15.3 8.7L220.6 345.2l-77.5 75.3c-10.4 10.4-18.7 1.1-22.3-11.6L2.3 278.4c-5.9-25.2 12.5-45.7 34.5-54.7l371.7-143.9c22-8.9 40 6.6 34.5 28.6z"/></svg>
             </a>
         </div>
     </footer>
