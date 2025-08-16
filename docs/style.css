@@ -1,35 +1,38 @@
 :root {
-    --color-primary-bg: #FDFDFD; /* Очень светлый, почти белый фон с теплым оттенком */
-    --color-secondary-bg: #FFFFFF; /* Чистый белый фон для карточек/модалок */
-    --color-text-dark: #2A2A2A; /* Насыщенный темно-серый текст */
-    --color-text-light: #555555; /* Средний серый текст */
+    /* Новые Цвета: Темные фоны + Неоновые акценты */
+    --color-primary-bg: #1A0A2E; /* Глубокий Темно-Фиолетовый */
+    --color-secondary-bg: #281B3C; /* Очень Темно-Серый (для карточек и блоков) */
+    
+    --color-text-dark: #E0E0E0; /* Светло-Серый текст для основного контента */
+    --color-text-light: #B0B0B0; /* Средне-Серый текст для второстепенных деталей */
+    --color-text-inverted: #FFFFFF; /* Чистый Белый текст (для кнопок, футера) */
 
-    --color-accent-violet: #5F00B7; /* Глубокий Индиго-Фиолетовый */
-    --color-accent-violet-dark: #4A009C; /* Более темный фиолетовый для ховера */
-    --color-accent-violet-light: #9C27B0; /* Светлее фиолетовый для градиента (более насыщенный) */
-    --color-accent-pink: #FF33CC; /* Яркий Розовый (Фуксия) */
-    --color-accent-pink-light: #FF85E3; /* Более светлый розовый */
+    --color-accent-violet: #BE00FF; /* Яркий Электрический Фиолетовый (Основной акцент) */
+    --color-accent-violet-dark: #8C00C0; /* Темнее фиолетовый для ховера */
+    --color-accent-violet-light: #C74FFF; /* Светлее фиолетовый для градиента */
+    --color-accent-pink: #FF00DC; /* Яркий Неоновый Розовый (Второй акцент) */
+    --color-accent-pink-light: #FF5CE6; /* Более светлый неоновый розовый */
 
-    --header-height-desktop: 80px; /* Высота хедера на ПК */
-    --header-height-mobile: 60px; /* Высота хедера на мобильных */
-    --border-radius-soft: 12px; /* Закругленные углы */
-    --box-shadow-light: 0 6px 20px rgba(0, 0, 0, 0.08); /* Мягкая, рассеянная тень */
-    --box-shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.15); /* Более выраженная тень */
+    --header-height-desktop: 80px;
+    --header-height-mobile: 60px;
+    --border-radius-soft: 12px;
+    --box-shadow-soft: 0 8px 30px rgba(0, 0, 0, 0.4); /* Мягкая, рассеянная тень для глубины */
+    --box-shadow-strong: 0 15px 40px rgba(0, 0, 0, 0.6); /* Более выраженная тень */
 }
 
 /* Общие стили */
 html {
-    scroll-behavior: smooth; /* Плавный скролл по якорям */
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif; /* Основной текст - Roboto */
     color: var(--color-text-dark);
     line-height: 1.6;
     background-color: var(--color-primary-bg);
-    overflow-x: hidden; /* Предотвращаем горизонтальный скролл при анимациях */
-    padding-top: var(--header-height-desktop); /* Отступ для фиксированного хедера */
+    overflow-x: hidden;
+    padding-top: var(--header-height-desktop);
 }
 
 .container {
@@ -39,26 +42,28 @@ body {
 }
 
 h1, h2, h3, h4 {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Inter', sans-serif; /* Заголовки - Inter */
     color: var(--color-text-dark);
     line-height: 1.2;
-    letter-spacing: 0.02em; /* Добавляем легкий интервал между буквами */
+    letter-spacing: 0.03em; /* Увеличенный интервал для "дизайнерского" вида */
 }
 
 h1 { 
-    font-size: 3.5em; /* Чуть крупнее для главного заголовка */
-    font-weight: 300; /* Более тонкий вес для элегантности */
+    font-size: 4em; /* Крупнее H1 */
+    font-weight: 800; /* ExtraBold для H1 */
+    color: var(--color-accent-violet); /* H1 в акцентном цвете */
 }
 h2 { 
-    font-size: 2.8em; 
-    font-weight: 400; /* Обычный вес для заголовков секций */
+    font-size: 3em; /* Крупнее H2 */
+    font-weight: 700; /* Bold для H2 */
+    color: var(--color-accent-violet); /* H2 в акцентном цвете */
 }
 h3 { 
-    font-size: 1.9em; 
-    font-weight: 600; /* Более жирный для подзаголовков */
+    font-size: 2em; 
+    font-weight: 600; /* SemiBold для H3 */
 }
 h4 { 
-    font-size: 1.5em; 
+    font-size: 1.6em; 
     font-weight: 700; 
 }
 
@@ -69,57 +74,61 @@ a {
 }
 
 a:hover {
-    color: var(--color-accent-pink);
+    color: var(--color-accent-pink); /* Розовый акцент на ховере для обычных ссылок */
     text-decoration: underline;
 }
 
 .cta-button {
     display: inline-block;
     background-color: var(--color-accent-violet);
-    color: var(--color-secondary-bg); /* Текст всегда белый */
-    padding: 12px 30px;
+    color: var(--color-text-inverted); /* Текст кнопки всегда белый */
+    padding: 14px 35px; /* Чуть крупнее кнопки */
     border-radius: var(--border-radius-soft);
     text-decoration: none;
     font-weight: 600;
-    font-size: 1.1em;
+    font-size: 1.15em; /* Чуть крупнее шрифт */
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: var(--box-shadow-light);
-    border: none; /* Убираем стандартный бордер */
+    box-shadow: var(--box-shadow-soft); /* Мягкая тень */
+    border: none;
+    outline: none; /* Убрать outline при фокусе */
+    cursor: pointer;
 }
 
 .cta-button:hover {
     background-color: var(--color-accent-violet-dark); /* Темнее фиолетовый при наведении */
-    transform: translateY(-2px);
-    box-shadow: var(--box-shadow-medium);
-    color: var(--color-secondary-bg); /* Убеждаемся, что текст остается белым */
+    transform: translateY(-2px); /* Легкий подъем */
+    box-shadow: var(--box-shadow-strong); /* Выраженная тень при наведении */
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 80px; /* Увеличиваем отступ */
-    font-weight: 400; /* Более тонкий вес */
+    margin-bottom: 80px;
+    font-weight: 700;
     color: var(--color-accent-violet);
-    font-size: 2.8em;
+    font-size: 3em; /* Крупнее заголовки секций */
+    text-shadow: 0 0 10px rgba(190, 0, 255, 0.4); /* Неоновый эффект тени для заголовков */
+    letter-spacing: 0.05em; /* Больше интервал для эффектности */
 }
 
 /* Custom Scrollbar (WebKit) */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px; /* Чуть шире скроллбар */
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--color-primary-bg);
+    background: var(--color-primary-bg); /* Темный фон трека */
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--color-accent-violet);
+    background: var(--color-accent-violet); /* Фиолетовый ползунок */
     border-radius: 10px;
+    border: 3px solid var(--color-primary-bg); /* Отступ от края трека */
     transition: background 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent-pink); /* При наведении на скроллбар - розовый */
+    background: var(--color-accent-pink); /* Розовый при наведении */
 }
 
 
@@ -133,15 +142,18 @@ a:hover {
     height: var(--header-height-desktop);
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный фон по умолчанию */
+    background-color: rgba(40, 27, 60, 0.7); /* Темно-серый с прозрачностью */
+    backdrop-filter: blur(20px); /* Жидкое стекло по умолчанию */
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* Выраженная тень для хедера */
     transition: background-color 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header.scrolled {
-    background-color: rgba(255, 255, 255, 0.6);
-    backdrop-filter: blur(20px); /* Жидкое стекло */
-    -webkit-backdrop-filter: blur(20px); /* Для Webkit-браузеров */
-    box-shadow: var(--box-shadow-light);
+    background-color: rgba(40, 27, 60, 0.85); /* Чуть темнее при прокрутке */
+    backdrop-filter: blur(25px); /* Чуть больше размытия */
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.6); /* Более сильная тень при прокрутке */
 }
 
 .header-content {
@@ -154,23 +166,35 @@ a:hover {
 .logo {
     display: flex;
     align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.6em;
-    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8em; /* Крупнее логотип */
+    font-weight: 800; /* ExtraBold для лого */
     color: var(--color-accent-violet);
-    text-decoration: none; /* Убираем подчеркивание с лого */
+    text-decoration: none;
+    text-shadow: 0 0 8px rgba(190, 0, 255, 0.6); /* Легкий неоновый эффект */
+    transition: text-shadow 0.3s ease;
 }
+.logo:hover {
+    text-shadow: 0 0 15px var(--color-accent-pink); /* Более сильный неоновый эффект при ховере */
+}
+
 
 .logo .chat-avatar {
-    width: 40px;
-    height: 40px;
+    width: 45px; /* Крупнее аватарка в лого */
+    height: 45px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 12px;
     object-fit: cover;
+    border: 2px solid var(--color-accent-pink); /* Неоновая рамка */
+    transition: border-color 0.3s ease;
+}
+.logo .chat-avatar:hover {
+    border-color: var(--color-accent-violet); /* Смена цвета рамки при ховере */
 }
 
+
 .nav {
-    display: flex; /* По умолчанию flex для ПК */
+    display: flex;
     align-items: center;
 }
 
@@ -179,31 +203,32 @@ a:hover {
     margin: 0;
     padding: 0;
     display: flex;
-    align-items: center; /* Выравнивание элементов списка */
+    align-items: center;
 }
 
 .nav-list li {
-    margin-left: 30px;
+    margin-left: 35px; /* Увеличиваем отступы между ссылками */
 }
 
 .nav-link {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    color: var(--color-text-dark);
+    font-family: 'Inter', sans-serif;
+    font-weight: 600; /* SemiBold */
+    color: var(--color-text-dark); /* Светлый текст на темном фоне */
     position: relative;
     padding-bottom: 5px;
-    letter-spacing: 0.02em; /* Интервал для навигации */
+    letter-spacing: 0.03em;
 }
 
 .nav-link::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
-    background-color: var(--color-accent-pink); /* Розовое подчеркивание при ховере */
+    height: 3px; /* Чуть толще подчеркивание */
+    background-color: var(--color-accent-pink); /* Неоновое розовое подчеркивание */
     bottom: 0;
     left: 0;
     transition: width 0.3s ease;
+    box-shadow: 0 0 8px var(--color-accent-pink); /* Неоновый эффект для подчеркивания */
 }
 
 .nav-link:hover::after {
@@ -211,18 +236,18 @@ a:hover {
 }
 
 .nav-cta-header {
-    margin-left: 30px; /* Отступ от навигации */
-    animation: none; /* Отключаем пульсацию для хедера */
+    margin-left: 40px; /* Больший отступ для кнопки в хедере */
+    animation: none; /* Убрана пульсация */
 }
 
 .hamburger {
-    display: none; /* Скрыто по умолчанию на ПК */
+    display: none; /* Скрыто на ПК */
     background: none;
     border: none;
     cursor: pointer;
     padding: 0;
-    width: 30px;
-    height: 20px;
+    width: 35px; /* Чуть крупнее бургер */
+    height: 25px;
     flex-direction: column;
     justify-content: space-between;
     z-index: 1100;
@@ -231,27 +256,28 @@ a:hover {
 .hamburger span {
     display: block;
     width: 100%;
-    height: 3px;
+    height: 4px; /* Толще линии бургера */
     background-color: var(--color-accent-violet);
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
+    box-shadow: 0 0 5px var(--color-accent-violet); /* Неоновый эффект для линий */
 }
 
 .hamburger.active span:nth-child(1) {
-    transform: translateY(8.5px) rotate(45deg);
+    transform: translateY(10px) rotate(45deg); /* Скорректирован translateY для толстых линий */
 }
 .hamburger.active span:nth-child(2) {
     opacity: 0;
 }
 .hamburger.active span:nth-child(3) {
-    transform: translateY(-8.5px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
 }
 
 /* Hero Section */
 .hero-section {
-    background: linear-gradient(135deg, var(--color-accent-violet-light) 0%, var(--color-primary-bg) 100%); /* Плавный переход от фиолетового к светло-серому */
+    background: linear-gradient(135deg, var(--color-primary-bg) 0%, rgba(38, 0, 71, 0.9) 100%); /* Более темный, глубокий градиент */
     text-align: center;
-    padding: 120px 0 80px;
+    padding: 150px 0 100px; /* Увеличенный padding */
     min-height: calc(100vh - var(--header-height-desktop));
     display: flex;
     align-items: center;
@@ -261,70 +287,72 @@ a:hover {
 }
 
 .hero-title, .hero-slogan, .hero-cta, .hero-description {
-    opacity: 0; transform: translateY(20px); /* Начальное состояние для анимации */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    opacity: 0; transform: translateY(40px); /* Больше сдвиг для анимации */
+    transition: opacity 1s ease-out, transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Более плавная анимация */
 }
-
 .hero-title.section-visible { opacity: 1; transform: translateY(0); }
-.hero-slogan.section-visible { opacity: 1; transform: translateY(0); }
-.hero-cta.section-visible { opacity: 1; transform: translateY(0); }
-.hero-description.section-visible { opacity: 1; transform: translateY(0); }
+.hero-slogan.section-visible { opacity: 1; transform: translateY(0); transition-delay: 0.2s;}
+.hero-cta.section-visible { opacity: 1; transform: translateY(0); transition-delay: 0.4s;}
+.hero-description.section-visible { opacity: 1; transform: translateY(0); transition-delay: 0.6s;}
 
 
 .hero-title {
-    font-size: 4em;
+    font-size: 4.5em; /* Очень крупный H1 */
     color: var(--color-accent-violet);
-    margin-bottom: 10px;
-    font-weight: 300; /* Более тонкий вес */
+    margin-bottom: 15px;
+    font-weight: 800; /* ExtraBold */
+    text-shadow: 0 0 15px var(--color-accent-violet); /* Сильный неоновый эффект */
 }
 
 .hero-slogan {
-    font-size: 1.8em;
-    color: var(--color-text-dark); /* Делаем текст темнее */
-    margin-bottom: 40px;
-    font-weight: 400; /* Обычный вес */
+    font-size: 2.2em; /* Крупнее слоган */
+    color: var(--color-text-dark);
+    margin-bottom: 50px;
+    font-weight: 500; /* Medium */
+    letter-spacing: 0.04em;
 }
 
 .hero-cta {
-    margin-bottom: 40px;
+    margin-bottom: 60px;
     animation: pulse 2s infinite; /* Пульсация кнопки только здесь */
+    box-shadow: 0 0 20px var(--color-accent-violet); /* Неоновая тень */
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(95, 0, 183, 0.7); } /* Используем новый фиолетовый */
-    70% { transform: scale(1.02); box-shadow: 0 0 0 15px rgba(95, 0, 183, 0); }
-    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(95, 0, 183, 0); }
+    0% { transform: scale(1); box-shadow: 0 0 20px var(--color-accent-violet); }
+    70% { transform: scale(1.03); box-shadow: 0 0 30px var(--color-accent-violet-light); }
+    100% { transform: scale(1); box-shadow: 0 0 20px var(--color-accent-violet); }
 }
 
 .hero-description {
-    max-width: 800px;
-    font-size: 1.1em;
-    color: var(--color-text-dark); /* Делаем текст темнее */
+    max-width: 900px; /* Шире описание */
+    font-size: 1.2em; /* Крупнее текст */
+    color: var(--color-text-dark);
+    line-height: 1.8; /* Увеличиваем межстрочный интервал */
 }
 
 /* Sections common style for scroll reveal */
 section {
-    padding: 100px 0; /* Увеличенные отступы между секциями */
+    padding: 120px 0; /* Еще больше отступов */
     position: relative;
     z-index: 1;
     background-color: var(--color-primary-bg);
-    /* Добавляем границу для лучшего разделения, если секция чередуется */
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05); /* Очень тонкий разделитель */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Очень тонкий светлый разделитель */
 }
 
 section:last-of-type {
-    border-bottom: none; /* Убираем границу у последней секции */
+    border-bottom: none;
 }
 
 section:nth-of-type(even) {
-    background-color: var(--color-secondary-bg); /* Чистый белый фон для чередующихся секций */
+    background-color: var(--color-secondary-bg); /* Темный серый фон для чередующихся секций */
 }
 
 /* Scroll reveal animations */
 .section-hidden {
     opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transform: translateY(80px); /* Более выраженный сдвиг */
+    transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Более плавные и долгие анимации */
 }
 
 .section-visible {
@@ -336,50 +364,65 @@ section:nth-of-type(even) {
 .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 40px; /* Больше отступ */
 }
 
 .feature-item {
-    background-color: var(--color-secondary-bg);
+    background-color: rgba(40, 27, 60, 0.7); /* Темный фон с прозрачностью */
+    backdrop-filter: blur(15px); /* Жидкое стекло */
+    -webkit-backdrop-filter: blur(15px);
     border-radius: var(--border-radius-soft);
-    padding: 40px; /* Увеличенный padding */
+    padding: 50px; /* Увеличенный padding */
     text-align: center;
-    box-shadow: var(--box-shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--box-shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    border: 1px solid rgba(190, 0, 255, 0.3); /* Тонкая неоновая рамка */
 }
 
 .feature-item:hover {
-    transform: translateY(-8px); /* Более выраженный подъем */
-    box-shadow: var(--box-shadow-medium);
+    transform: translateY(-10px); /* Выраженный подъем */
+    box-shadow: var(--box-shadow-strong), 0 0 25px var(--color-accent-violet); /* Сильная тень + неоновый эффект */
+    background-color: rgba(40, 27, 60, 0.85); /* Чуть темнее при ховере */
 }
 
 .feature-item h3 {
     color: var(--color-accent-violet);
     margin-top: 15px;
-    font-weight: 600;
+    font-weight: 700; /* Bold */
+    text-shadow: 0 0 8px rgba(190, 0, 255, 0.4);
 }
 
 .feature-item p {
     color: var(--color-text-light);
-    font-size: 0.95em;
+    font-size: 1em;
 }
 
 .feature-icon {
-    width: 70px; /* Чуть крупнее иконки */
-    height: 70px;
+    width: 80px; /* Крупнее иконки */
+    height: 80px;
     object-fit: contain;
-    margin-bottom: 20px; /* Увеличиваем отступ */
-    color: var(--color-accent-violet); /* Если это SVG иконки */
+    margin-bottom: 25px;
+    color: var(--color-accent-pink); /* Иконки неоново-розовые */
+    filter: drop-shadow(0 0 8px var(--color-accent-pink)); /* Неоновый эффект для иконок */
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
+.feature-item:hover .feature-icon {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 15px var(--color-accent-violet)); /* Меняем на фиолетовый при ховере */
+}
+
 
 /* Rules Section */
 .rules-content {
-    max-width: 800px;
+    max-width: 900px; /* Чуть шире */
     margin: 0 auto;
-    background-color: var(--color-secondary-bg);
-    padding: 50px; /* Увеличенный padding */
+    background-color: rgba(40, 27, 60, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 60px; /* Увеличенный padding */
     border-radius: var(--border-radius-soft);
-    box-shadow: var(--box-shadow-light);
+    box-shadow: var(--box-shadow-soft);
+    border: 1px solid rgba(190, 0, 255, 0.3); /* Тонкая неоновая рамка */
 }
 
 .rules-content ul {
@@ -388,42 +431,62 @@ section:nth-of-type(even) {
 }
 
 .rules-content ul li {
-    margin-bottom: 10px;
-    padding-left: 30px; /* Больше отступ для маркера */
+    margin-bottom: 15px; /* Больше отступ */
+    padding-left: 35px; /* Больше отступ для маркера */
     position: relative;
     color: var(--color-text-dark);
+    font-size: 1.05em; /* Чуть крупнее текст */
 }
 
 .rules-content ul li::before {
-    content: '•'; /* Маркер списка */
+    content: '•';
     color: var(--color-accent-pink); /* Маркер розового цвета */
-    font-size: 1.5em; /* Чуть крупнее маркер */
+    font-size: 1.8em; /* Крупнее маркер */
     position: absolute;
     left: 0;
-    top: -2px; /* Поправить выравнивание маркера */
+    top: -5px; /* Выравнивание маркера */
+    text-shadow: 0 0 5px var(--color-accent-pink); /* Неоновый эффект */
 }
 
 .rules-content h3 {
     color: var(--color-accent-violet);
-    margin-top: 40px; /* Увеличиваем отступ */
-    margin-bottom: 20px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
+    margin-top: 50px; /* Увеличиваем отступ */
+    margin-bottom: 25px;
+    font-weight: 700; /* Bold */
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 10px rgba(190, 0, 255, 0.4);
 }
 .rules-content h3:first-of-type {
-    margin-top: 0; /* Первый заголовок без верхнего отступа */
+    margin-top: 0;
 }
 
 .popup-trigger {
     color: var(--color-accent-violet);
     text-decoration: underline;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 700; /* Bold */
     transition: color 0.2s ease;
+    position: relative; /* Для анимации подчеркивания */
+}
+.popup-trigger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px; /* Подчеркивание ниже текста */
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-accent-pink); /* Розовое подчеркивание */
+    transform: scaleX(0); /* Скрыто по умолчанию */
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 8px var(--color-accent-pink);
 }
 
 .popup-trigger:hover {
-    color: var(--color-accent-pink); /* Розовый при ховере */
+    color: var(--color-accent-pink); /* Текст становится розовым при ховере */
+}
+.popup-trigger:hover::after {
+    transform: scaleX(1); /* Появляется подчеркивание */
 }
 
 /* Popup Overlay */
@@ -433,14 +496,14 @@ section:nth-of-type(even) {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Чуть темнее оверлей */
+    background-color: rgba(0, 0, 0, 0.7); /* Более темный оверлей */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10000;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.4s ease, visibility 0.4s ease; /* Чуть дольше анимация */
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
 .popup-overlay.active {
@@ -449,18 +512,19 @@ section:nth-of-type(even) {
 }
 
 .popup-content {
-    background-color: rgba(255, 255, 255, 0.85); /* Более плотный фон для попапа */
-    backdrop-filter: blur(25px); /* Эффект жидкого стекла для попапа */
-    -webkit-backdrop-filter: blur(25px); /* Для Webkit-браузеров */
-    padding: 40px; /* Увеличенный padding */
+    background-color: rgba(40, 27, 60, 0.85); /* Темный фон с прозрачностью */
+    backdrop-filter: blur(30px); /* Усиленное жидкое стекло */
+    -webkit-backdrop-filter: blur(30px);
+    padding: 50px; /* Увеличенный padding */
     border-radius: var(--border-radius-soft);
-    box-shadow: var(--box-shadow-medium); /* Более выраженная тень */
-    max-width: 500px; /* Чуть шире */
+    box-shadow: var(--box-shadow-strong), 0 0 30px var(--color-accent-violet); /* Сильная тень + неоновый эффект */
+    max-width: 550px; /* Чуть шире */
     width: 90%;
     position: relative;
-    transform: scale(0.9);
+    transform: scale(0.8); /* Начинаем с меньшего размера */
     opacity: 0;
-    transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.4s ease; /* Более плавная и пружинистая анимация появления */
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.5s ease; /* Более выраженная анимация */
+    border: 1px solid var(--color-accent-violet); /* Тонкая неоновая рамка */
 }
 
 .popup-overlay.active .popup-content {
@@ -470,32 +534,33 @@ section:nth-of-type(even) {
 
 .close-popup {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 20px; /* Отступы */
+    right: 20px;
     background: none;
     border: none;
-    font-size: 2.5em; /* Крупнее кнопка закрытия */
+    font-size: 3em; /* Крупнее кнопка закрытия */
     cursor: pointer;
     color: var(--color-text-light);
-    transition: color 0.2s ease, transform 0.2s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .close-popup:hover {
-    color: var(--color-accent-violet); /* Темнее фиолетовый при ховере */
-    transform: rotate(90deg); /* Вращение при ховере */
+    color: var(--color-accent-pink); /* Розовый при ховере */
+    transform: rotate(90deg) scale(1.1); /* Вращение и увеличение */
 }
 
 #popup-title {
     color: var(--color-accent-violet);
     margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.8em; /* Крупнее заголовок попапа */
-    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 2em; /* Крупнее заголовок попапа */
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(190, 0, 255, 0.4);
 }
 
 #popup-description {
     color: var(--color-text-dark);
-    font-size: 1.0em;
+    font-size: 1.05em;
 }
 
 /* About Us Section */
@@ -506,35 +571,36 @@ section:nth-of-type(even) {
 .history-block,
 .team-block {
     max-width: 900px;
-    margin: 0 auto 80px auto; /* Увеличиваем отступы между блоками */
-    background-color: var(--color-secondary-bg);
-    padding: 50px; /* Увеличенный padding */
+    margin: 0 auto 100px auto; /* Больше отступы */
+    background-color: rgba(40, 27, 60, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 60px; /* Увеличенный padding */
     border-radius: var(--border-radius-soft);
-    box-shadow: var(--box-shadow-light);
+    box-shadow: var(--box-shadow-soft);
+    border: 1px solid rgba(190, 0, 255, 0.3); /* Неоновая рамка */
 }
 
 .history-block h3,
 .team-block h3 {
     color: var(--color-accent-violet);
-    margin-top: 0; /* Убираем верхний отступ у первого заголовка */
-    margin-bottom: 25px; /* Увеличиваем отступ */
-    font-weight: 600;
-    letter-spacing: 0.02em;
-}
-/* Переименовываем h3 для владельца чата */
-.team-block h3 {
     margin-top: 0;
+    margin-bottom: 30px; /* Увеличенный отступ */
+    font-weight: 700; /* Bold */
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 10px rgba(190, 0, 255, 0.4);
 }
-
 
 .history-block p {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     color: var(--color-text-dark);
+    font-size: 1.05em;
+    line-height: 1.7;
 }
 
 .history-block p strong {
-    color: var(--color-accent-violet); /* Цвет жирного текста */
-    font-weight: 600; /* Более сильный жирный */
+    color: var(--color-accent-pink); /* Цвет жирного текста - неоновый розовый */
+    font-weight: 700;
 }
 
 .team-member {
@@ -542,128 +608,151 @@ section:nth-of-type(even) {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin-top: 40px; /* Отступ между историей и владельцем */
+    margin-top: 60px; /* Большой отступ */
 }
 
 .member-avatar {
-    width: 150px; /* Крупнее аватарка */
-    height: 150px;
+    width: 180px; /* Очень крупная аватарка */
+    height: 180px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 25px;
-    border: 5px solid var(--color-accent-violet); /* Толще рамка */
-    box-shadow: var(--box-shadow-medium); /* Более выраженная тень */
+    margin-bottom: 30px;
+    border: 6px solid var(--color-accent-violet); /* Толстая неоновая рамка */
+    box-shadow: var(--box-shadow-strong), 0 0 40px var(--color-accent-violet); /* Сильная тень + неоновый эффект */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.member-avatar:hover {
+    transform: scale(1.05);
+    box-shadow: var(--box-shadow-strong), 0 0 50px var(--color-accent-pink); /* Меняем неоновый эффект при ховере */
 }
 
+
 .team-member h4 {
-    font-size: 2.2em; /* Крупнее ник */
-    color: var(--color-accent-violet);
-    margin-bottom: 8px; /* Увеличиваем отступ */
+    font-size: 2.5em; /* Очень крупный ник */
+    color: var(--color-text-inverted); /* Чисто белый ник */
+    margin-bottom: 10px;
+    font-weight: 800; /* ExtraBold */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Легкий неоновый эффект */
 }
 
 .team-member .member-role {
-    font-size: 1.2em; /* Чуть крупнее */
+    font-size: 1.3em; /* Крупнее */
     color: var(--color-text-light);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-weight: 600;
 }
 
 .member-bio {
-    max-width: 650px;
-    font-size: 1em; /* Чуть крупнее */
+    max-width: 700px;
+    font-size: 1.1em;
     color: var(--color-text-dark);
+    line-height: 1.7;
 }
 
 .member-bio .contact-info {
     display: block;
-    margin-top: 15px; /* Увеличенный отступ */
-    font-size: 0.95em;
-    color: var(--color-text-light);
+    margin-top: 25px; /* Больше отступ */
+    font-size: 1em;
+    color: var(--color-text-dark); /* Цвет текста */
 }
 
 .member-bio .contact-info a {
-    color: var(--color-accent-pink); /* Отдельный цвет для контакта */
-    text-decoration: underline; /* Подчеркивание */
+    color: var(--color-accent-pink); /* Контакт розовый */
+    text-decoration: underline;
+    transition: color 0.3s ease;
 }
 
 .member-bio .contact-info a:hover {
-    color: var(--color-accent-violet);
+    color: var(--color-accent-violet); /* Фиолетовый при ховере */
 }
 
 .moderators-note {
     text-align: center;
-    margin-top: 40px; /* Увеличиваем отступ */
+    margin-top: 50px; /* Больше отступ */
     font-style: italic;
     color: var(--color-text-light);
-    font-size: 1em;
+    font-size: 1.1em;
+    line-height: 1.5;
 }
 
 /* Projects Section */
 .project-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Уточнен minmax */
+    gap: 40px; /* Больше отступ */
     justify-content: center;
-    align-items: stretch; /* Чтобы карточки растягивались по высоте */
+    align-items: stretch;
 }
 
 .project-item {
-    background-color: var(--color-secondary-bg);
+    background-color: rgba(40, 27, 60, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     border-radius: var(--border-radius-soft);
-    padding: 30px; /* Увеличенный padding */
+    padding: 35px; /* Увеличенный padding */
     text-align: center;
-    box-shadow: var(--box-shadow-light);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Flexbox для содержимого карточки */
+    box-shadow: var(--box-shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Распределение контента */
+    justify-content: space-between;
+    border: 1px solid rgba(255, 0, 220, 0.3); /* Тонкая розовая рамка */
 }
 
 .project-item:hover {
-    transform: translateY(-8px); /* Более выраженный подъем */
-    box-shadow: var(--box-shadow-medium);
+    transform: translateY(-10px);
+    box-shadow: var(--box-shadow-strong), 0 0 25px var(--color-accent-pink); /* Сильная тень + неоновый эффект */
+    background-color: rgba(40, 27, 60, 0.85); /* Чуть темнее при ховере */
 }
 
 .project-item .project-logo {
-    width: 90px; /* Крупнее лого */
-    height: 90px;
+    width: 100px; /* Еще крупнее лого */
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 20px;
-    border: 3px solid var(--color-accent-pink); /* Толще рамка */
+    margin-bottom: 25px;
+    border: 4px solid var(--color-accent-violet); /* Толще рамка */
     box-shadow: var(--box-shadow-light);
+    transition: border-color 0.3s ease, transform 0.3s ease;
 }
+.project-item:hover .project-logo {
+    border-color: var(--color-accent-pink); /* Смена цвета рамки при ховере */
+    transform: scale(1.05);
+}
+
 
 .project-item a {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.4em; /* Крупнее название проекта */
-    font-weight: 600;
-    color: var(--color-accent-violet); /* Название проекта будет фиолетовым */
-    margin-bottom: 10px; /* Увеличенный отступ */
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5em; /* Крупнее название проекта */
+    font-weight: 700; /* Bold */
+    color: var(--color-text-dark); /* Название проекта будет темным (светло-серым) */
+    margin-bottom: 12px;
     display: block;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.2); /* Легкий неоновый эффект */
 }
-
 .project-item a:hover {
     color: var(--color-accent-pink);
     text-decoration: underline;
+    text-shadow: 0 0 10px var(--color-accent-pink);
 }
 
 .project-description {
-    font-size: 0.95em;
+    font-size: 1em;
     color: var(--color-text-light);
-    margin-top: auto; /* Прижимает к низу, если flex */
+    margin-top: auto;
 }
 
 .small-text-hint {
-    font-size: 0.8em;
+    font-size: 0.85em;
     color: var(--color-text-light);
     display: block;
-    margin-top: 8px;
-    font-style: italic; /* Курсив для hint */
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.4;
 }
 
 .small-text-hint a {
-    color: var(--color-accent-pink); /* Яркий розовый для FlearyBot */
+    color: var(--color-accent-pink);
     text-decoration: underline;
 }
 
@@ -673,11 +762,11 @@ section:nth-of-type(even) {
 
 /* Footer */
 .footer {
-    background-color: var(--color-text-dark); /* Темный фон футера */
-    color: var(--color-secondary-bg);
-    padding: 40px 0; /* Увеличиваем padding */
+    background-color: var(--color-text-dark); /* Темно-серый фон футера */
+    color: var(--color-text-inverted); /* Белый текст */
+    padding: 40px 0;
     text-align: center;
-    font-size: 0.9em;
+    font-size: 0.95em;
 }
 
 .footer-content {
@@ -685,7 +774,7 @@ section:nth-of-type(even) {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    gap: 30px; /* Увеличиваем отступ */
+    gap: 30px;
 }
 
 .footer-content p {
@@ -696,18 +785,20 @@ section:nth-of-type(even) {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: var(--color-secondary-bg); /* Иконка белая */
-    transition: color 0.3s ease, transform 0.3s ease;
+    color: var(--color-text-inverted); /* Белая иконка */
+    transition: color 0.3s ease, transform 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3)); /* Легкий неоновый эффект */
 }
 
 .telegram-icon-link:hover {
-    color: var(--color-accent-pink); /* При ховере - ярко-розовая */
-    transform: scale(1.1) rotate(5deg); /* Небольшая анимация */
+    color: var(--color-accent-pink); /* Розовая при ховере */
+    transform: scale(1.1) rotate(10deg); /* Более выраженная анимация */
+    filter: drop-shadow(0 0 15px var(--color-accent-pink)); /* Сильный неоновый эффект при ховере */
 }
 
 .telegram-icon-link svg {
-    width: 32px; /* Чуть крупнее иконка */
-    height: 32px;
+    width: 35px; /* Крупнее иконка */
+    height: 35px;
 }
 
 /* Mobile styles */
@@ -715,14 +806,14 @@ section:nth-of-type(even) {
     body {
         padding-top: var(--header-height-mobile);
     }
-    h1 { font-size: 2.5em; }
-    h2 { font-size: 2em; }
-    h3 { font-size: 1.5em; }
+    h1 { font-size: 3em; }
+    h2 { font-size: 2.2em; }
+    h3 { font-size: 1.7em; }
     .header {
         height: var(--header-height-mobile);
     }
     .logo {
-        font-size: 1.2em; /* Уменьшаем размер лого на мобильных */
+        font-size: 1.3em;
     }
     .logo .chat-avatar {
         width: 35px;
@@ -732,8 +823,8 @@ section:nth-of-type(even) {
         padding-top: 80px;
         min-height: calc(100vh - var(--header-height-mobile));
     }
-    .hero-title { font-size: 3em; }
-    .hero-slogan { font-size: 1.5em; }
+    .hero-title { font-size: 3.2em; }
+    .hero-slogan { font-size: 1.6em; }
 
     .nav {
         position: fixed;
@@ -741,14 +832,14 @@ section:nth-of-type(even) {
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(255, 255, 255, 0.98); /* Почти непрозрачный белый фон */
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background-color: rgba(40, 27, 60, 0.95); /* Почти непрозрачный темный фон */
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
         transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Пружинистая анимация открытия */
         z-index: 999;
     }
 
@@ -760,30 +851,31 @@ section:nth-of-type(even) {
         flex-direction: column;
         text-align: center;
         width: 100%;
-        margin-bottom: 30px; /* Отступ от кнопки CTA */
+        margin-bottom: 40px; /* Отступ от кнопки CTA */
     }
 
     .nav-list li {
-        margin: 15px 0; /* Меньше отступы на мобильных */
+        margin: 20px 0; /* Увеличенные отступы на мобильных */
     }
 
     .nav-link {
-        font-size: 1.6em; /* Чуть меньше размер ссылок */
-        font-weight: 600;
-        color: var(--color-accent-violet);
+        font-size: 1.8em; /* Крупнее размер ссылок */
+        font-weight: 700;
+        color: var(--color-text-dark);
     }
 
     .nav-link::after {
         background-color: var(--color-accent-pink);
-        height: 3px;
+        height: 4px;
+        box-shadow: 0 0 10px var(--color-accent-pink);
     }
 
     .nav-cta-header {
-        display: block; /* Показать кнопку в мобильном меню */
-        margin-top: 0; /* Убираем лишний margin-top */
+        display: block;
+        margin-top: 0;
         margin-left: 0;
-        font-size: 1em; /* Уменьшаем размер кнопки в мобильном меню */
-        padding: 12px 30px;
+        font-size: 1.1em; /* Размер кнопки в мобильном меню */
+        padding: 14px 35px;
     }
 
     .hamburger {
@@ -798,17 +890,13 @@ section:nth-of-type(even) {
     .history-block,
     .team-block,
     .project-list {
-        padding: 25px;
+        padding: 30px; /* Меньше padding на мобильных */
     }
-
     .project-list {
         grid-template-columns: 1fr;
     }
     .footer-content {
         flex-direction: column;
-        gap: 15px;
-    }
-    .footer-content p {
-        margin-bottom: 0;
+        gap: 20px;
     }
 }
