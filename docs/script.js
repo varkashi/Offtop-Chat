@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const currentTheme = localStorage.getItem('theme');
 
-    if (currentTheme) {
-        document.body.classList.add(currentTheme);
+    if (currentTheme === 'light-theme') {
+        document.body.classList.add('light-theme');
     }
 
     themeToggle.addEventListener('click', () => {
@@ -43,12 +43,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ========================================================================
-    // 3. ИНТЕРАКТИВНАЯ КАРУСЕЛЬ ПРЕИМУЩЕСТВ
+    // 3. ИНТЕРАКТИВНАЯ КАРУСЕЛЬ ПРЕИМУЩЕСТВ (2D)
     // ========================================================================
     const featuresData = [
-        { icon: 'images/icon-freedom.png', title: 'Свобода общения', description: 'Обсуждайте любые темы, делитесь мыслями и мнениями без ограничений. Здесь нет запретов для вашей фантазии!' },
-        { icon: 'images/icon-community.png', title: 'Дружелюбное комьюнити', description: 'Находите единомышленников и заводите новых друзей. Наше сообщество всегда радо новым лицам и открыто к общению.' },
-        { icon: 'images/icon-activity.png', title: 'Активное общение', description: 'Чат всегда живой и наполнен интересными разговорами. Вы никогда не заскучаете – диалоги кипят круглосуточно!' }
+        { title: 'Свобода общения', description: 'Обсуждайте любые темы, делитесь мыслями и мнениями без ограничений. Здесь нет запретов для вашей фантазии!' },
+        { title: 'Дружелюбное комьюнити', description: 'Находите единомышленников и заводите новых друзей. Наше сообщество всегда радо новым лицам и открыто к общению.' },
+        { title: 'Активное общение', description: 'Чат всегда живой и наполнен интересными разговорами. Вы никогда не заскучаете – диалоги кипят круглосуточно!' }
     ];
 
     const carouselWrapper = document.querySelector('.carousel-wrapper');
@@ -56,11 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         featuresData.forEach(item => {
             const card = document.createElement('div');
             card.className = 'feature-item';
-            card.innerHTML = `
-                <img src="${item.icon}" alt="Иконка" class="feature-icon">
-                <h3>${item.title}</h3>
-                <p>${item.description}</p>
-            `;
+            card.innerHTML = `<h3>${item.title}</h3><p>${item.description}</p>`;
             carouselWrapper.appendChild(card);
         });
 
@@ -70,49 +66,56 @@ document.addEventListener('DOMContentLoaded', () => {
         function updateCarousel() {
             cards.forEach((card, index) => {
                 card.classList.remove('active', 'prev', 'next');
-                if (index === currentIndex) {
+                let newIndex = (index - currentIndex + cards.length) % cards.length;
+                if (newIndex === 0) {
                     card.classList.add('active');
-                } else if (index === (currentIndex - 1 + cards.length) % cards.length) {
-                    card.classList.add('prev');
-                } else if (index === (currentIndex + 1) % cards.length) {
+                } else if (newIndex === 1) {
                     card.classList.add('next');
+                } else if (newIndex === cards.length - 1) {
+                    card.classList.add('prev');
                 }
             });
         }
-
-        document.querySelector('.carousel-arrow.next').addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % cards.length;
-            updateCarousel();
-        });
-
-        document.querySelector('.carousel-arrow.prev').addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-            updateCarousel();
-        });
-
-        updateCarousel();
-    }
-
-    // ========================================================================
-    // 4. ТАБЫ ДЛЯ ПРАВИЛ
-    // ========================================================================
-    const tabsContainer = document.querySelector('.rules-tabs-container');
-    if (tabsContainer) {
-        const tabLinks = tabsContainer.querySelectorAll('.tab-link');
-        const tabContents = tabsContainer.querySelectorAll('.tab-content');
-
-        tabLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                const tabId = link.dataset.tab;
-
-                tabLinks.forEach(item => item.classList.remove('active'));
-                tabContents.forEach(item => item.classList.remove('active'));
-
-                link.classList.add('active');
-                document.getElementById(tabId).classList.add('active');
+        
+        if (cards.length > 0) {
+            document.querySelector('.carousel-arrow.next').addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % cards.length;
+                updateCarousel();
             });
-        });
+
+            document.querySelector('.carousel-arrow.prev').addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+                updateCarousel();
+            });
+
+            updateCarousel();
+        }
     }
+
+    // ========================================================================
+    // 4. АККОРДЕОН ДЛЯ ПРАВИЛ (НА МОБИЛЬНЫХ)
+    // ========================================================================
+    const accordionItems = document.querySelectorAll('.rules-accordion-item');
+    accordionItems.forEach(item => {
+        const header = item.querySelector('.rules-accordion-header');
+        const content = item.querySelector('.rules-accordion-content');
+
+        header.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            
+            // Закрываем все остальные
+            accordionItems.forEach(otherItem => {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('.rules-accordion-content').style.maxHeight = null;
+            });
+            
+            // Открываем или закрываем текущий
+            if (!isActive) {
+                item.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    });
 
     // ========================================================================
     // 5. ГОРИЗОНТАЛЬНАЯ КАРУСЕЛЬ ПРОЕКТОВ
@@ -141,38 +144,39 @@ document.addEventListener('DOMContentLoaded', () => {
             projectsCarousel.appendChild(card);
         });
         
-        // Клонируем элементы для "бесконечной" прокрутки
-        projectsCarousel.innerHTML += projectsCarousel.innerHTML;
-        
-        // Управляем анимацией
         const container = document.querySelector('.projects-carousel-container');
-        let animation;
-        
-        function startAnimation() {
-            const elements = projectsCarousel.querySelectorAll('.project-item');
-            const speed = 50; // pixels per second
-            const totalWidth = Array.from(elements).reduce((acc, el) => acc + el.offsetWidth + 30, 0) / 2; // 30 is the gap
-            
-            projectsCarousel.style.animation = `scroll ${totalWidth / speed}s linear infinite`;
-            animation = projectsCarousel.style.animation;
-        }
+        const prevBtn = document.querySelector('.projects-prev');
+        const nextBtn = document.querySelector('.projects-next');
+        let autoScrollInterval;
 
-        container.addEventListener('mouseenter', () => projectsCarousel.style.animationPlayState = 'paused');
-        container.addEventListener('mouseleave', () => projectsCarousel.style.animationPlayState = 'running');
+        const scrollAmount = 330; // Ширина карточки + отступ
 
-        // Добавляем CSS-анимацию в head
-        const style = document.createElement('style');
-        style.innerHTML = `
-            @keyframes scroll {
-                0% { transform: translateX(0); }
-                100% { transform: translateX(-50%); }
-            }
-        `;
-        document.head.appendChild(style);
+        nextBtn.addEventListener('click', () => {
+            projectsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        });
+        prevBtn.addEventListener('click', () => {
+            projectsCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        });
+
+        const startAutoScroll = () => {
+            autoScrollInterval = setInterval(() => {
+                if (projectsCarousel.scrollLeft + projectsCarousel.clientWidth >= projectsCarousel.scrollWidth) {
+                    projectsCarousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    projectsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                }
+            }, 3000); // каждые 3 секунды
+        };
+
+        const stopAutoScroll = () => {
+            clearInterval(autoScrollInterval);
+        };
         
-        startAnimation();
+        container.addEventListener('mouseenter', stopAutoScroll);
+        container.addEventListener('mouseleave', startAutoScroll);
+
+        startAutoScroll();
     }
-
 
     // ========================================================================
     // 6. POPUP ДЛЯ ПРАВИЛ ("ВАРН", "МУТ", "БАН")
@@ -242,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('section-hidden');
         setTimeout(() => {
             el.classList.add('section-visible');
-        }, 150 * (index + 1)); // Каскадная анимация
+        }, 150 * (index + 1));
     });
 
 });
